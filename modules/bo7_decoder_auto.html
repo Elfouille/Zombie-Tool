@@ -5,91 +5,118 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>BO7 – Décodeur (AUTO)</title>
 <style>
-body{margin:0;background:#0b0c10;color:#fff;font-family:Arial,sans-serif;display:flex;justify-content:center;padding:20px}
-.panel{background:#14161d;border:1px solid #2a2f3a;border-radius:16px;padding:20px;max-width:980px;width:100%}
-h2{text-align:center;margin:0 0 10px}
-.hint{opacity:.85;font-size:13px;margin-bottom:10px;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-.sym{background:#0f1117;border:2px solid #2a2f3a;border-radius:14px;padding:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
-.sym:hover{border-color:#7aa2ff}
-.sym svg{width:64px;height:64px}
-.sym.used{border-color:rgba(155,92,255,.55)}
-.sym.active{border-color:#9b5cff;box-shadow:0 0 14px rgba(155,92,255,.7)}
-.sym.used svg,.sym.active svg{filter:drop-shadow(0 0 6px rgba(155,92,255,.8))}
-.sym svg line,.sym svg rect,.sym svg path{stroke:#fff !important;fill:none !important;stroke-linecap:square;stroke-linejoin:miter}
-.sym svg circle{fill:#fff !important;stroke:none !important}
-.controls{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-button{background:#0f1117;color:#fff;border:1px solid #2a2f3a;border-radius:10px;padding:10px 14px;cursor:pointer}
-button:hover{border-color:#7aa2ff}
-.output{margin-top:16px;font-size:18px;line-height:1.6}
-code{background:#000;padding:4px 8px;border-radius:6px}
-.small{opacity:.8;font-size:13px}
-.badge{display:inline-block;padding:2px 10px;border-radius:999px;border:1px solid #2a2f3a;background:#0f1117;margin-left:8px}
-.ok{border-color:rgba(155,92,255,.9); box-shadow:0 0 10px rgba(155,92,255,.25)}
-.warn{border-color:rgba(255,180,0,.9)}
-.row{margin-top:10px}
-.big{font-size:24px}
-.toggle{display:flex;align-items:center;gap:10px;margin-top:8px;justify-content:center;font-size:13px;opacity:.9}
-.toggle input{transform:scale(1.2)}
+  body{margin:0;background:#0b0c10;color:#fff;font-family:Arial,sans-serif;display:flex;justify-content:center;padding:20px}
+  .panel{background:#14161d;border:1px solid #2a2f3a;border-radius:16px;padding:20px;max-width:980px;width:100%}
+  h2{text-align:center;margin:0 0 10px}
+  .hint{opacity:.85;font-size:13px;margin-bottom:10px;text-align:center}
 
-/* ===== Mobile UX améliorée ===== */
+  .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .sym{background:#0f1117;border:2px solid #2a2f3a;border-radius:14px;padding:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
+  .sym:hover{border-color:#7aa2ff}
+  .sym svg{width:64px;height:64px}
 
-/* Anti double-tap / sélection */
-.sym, button{
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-  touch-action: manipulation;
-}
+  .sym.used{border-color:rgba(155,92,255,.55)}
+  .sym.active{border-color:#9b5cff;box-shadow:0 0 14px rgba(155,92,255,.7)}
+  .sym.used svg,.sym.active svg{filter:drop-shadow(0 0 6px rgba(155,92,255,.8))}
 
-/* Mobile : 3 colonnes */
-@media (max-width: 600px){
-  .grid{
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+  .sym svg line,.sym svg rect,.sym svg path{stroke:#fff !important;fill:none !important;stroke-linecap:square;stroke-linejoin:miter}
+  .sym svg circle{fill:#fff !important;stroke:none !important}
+
+  .controls{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+  button{background:#0f1117;color:#fff;border:1px solid #2a2f3a;border-radius:10px;padding:10px 14px;cursor:pointer}
+  button:hover{border-color:#7aa2ff}
+
+  .output{margin-top:0;font-size:18px;line-height:1.35}
+  code{background:#000;padding:4px 8px;border-radius:6px}
+  .small{opacity:.8;font-size:13px}
+  .badge{display:inline-block;padding:2px 10px;border-radius:999px;border:1px solid #2a2f3a;background:#0f1117;margin-left:8px}
+  .ok{border-color:rgba(155,92,255,.9); box-shadow:0 0 10px rgba(155,92,255,.25)}
+  .warn{border-color:rgba(255,180,0,.9)}
+  .row{margin-top:8px}
+  .big{font-size:22px}
+
+  .toggle{display:flex;align-items:center;gap:10px;margin-top:8px;justify-content:center;font-size:13px;opacity:.9}
+  .toggle input{transform:scale(1.2)}
+
+  /* Anti double-tap / sélection */
+  .sym, button{
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    touch-action: manipulation;
   }
-  .sym{
-    padding: 12px;
-    border-radius: 16px;
-    min-height: 110px;
-  }
-  .sym svg{
-    width: 76px;
-    height: 76px;
-  }
-  button{
-    padding: 12px 16px;
-    font-size: 16px;
-    border-radius: 12px;
-  }
-  .output{
-    font-size: 16px;
-  }
-}
 
-/* Boutons fix en bas */
-.controls{
-  position: sticky;
-  bottom: 0;
-  z-index: 50;
-  padding-top: 10px;
-  padding-bottom: calc(10px + env(safe-area-inset-bottom));
-  background: linear-gradient(transparent, rgba(11,12,16,.92) 30%);
-  backdrop-filter: blur(6px);
-}
+  /* Anti scroll élastique */
+  html, body{overscroll-behavior: contain;}
 
-/* Supprime hover collant mobile */
-@media (hover: none){
-  .sym:hover{
-    border-color:#2a2f3a;
-    box-shadow:none;
+  /* ===== Mode mobile: bottom panel + grille 3 colonnes auto-fit ===== */
+  :root{
+    --infoH: 25svh;      /* ~1/4 écran */
+    --tileH: auto;       /* sera rempli par JS sur mobile */
   }
-}
 
-/* Anti scroll élastique */
-html, body{
-  overscroll-behavior: contain;
-}
+  .bottomPanel{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--infoH);
+    z-index: 55;
+    background: rgba(11,12,16,.95);
+    border-top: 1px solid #2a2f3a;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    backdrop-filter: blur(8px);
+    overflow: auto;
+  }
 
+  .controls{
+    position: sticky;
+    bottom: var(--infoH);
+    z-index: 60;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: linear-gradient(transparent, rgba(11,12,16,.92) 30%);
+    backdrop-filter: blur(6px);
+  }
+
+  @media (max-width: 600px){
+    body{padding:12px}
+    .panel{padding:14px}
+
+    .grid{
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      /* espace pour éviter que le bas de la grille soit masqué */
+      padding-bottom: calc(var(--infoH) + 90px);
+    }
+
+    .sym{
+      height: var(--tileH);
+      padding: 10px;
+      border-radius: 14px;
+    }
+
+    .sym svg{
+      width: min(64px, 18vw);
+      height: auto;
+      aspect-ratio: 1 / 1;
+      max-height: calc(var(--tileH, 120px) - 18px);
+    }
+
+    button{
+      padding: 12px 16px;
+      font-size: 16px;
+      border-radius: 12px;
+    }
+
+    .output{font-size:16px}
+    .big{font-size:20px}
+  }
+
+  /* Supprime hover collant mobile */
+  @media (hover: none){
+    .sym:hover{border-color:#2a2f3a; box-shadow:none}
+    button:hover{border-color:#2a2f3a}
+  }
 </style>
 </head>
 
@@ -110,7 +137,10 @@ html, body{
     <button id="clearBtn">Effacer</button>
   </div>
 
-  <div class="output" id="out"></div>
+  <!-- panneau infos fixe en bas -->
+  <div class="bottomPanel">
+    <div class="output" id="out"></div>
+  </div>
 </div>
 
 <script>
@@ -152,7 +182,7 @@ const undoBtn = document.getElementById("undoBtn");
 const clearBtn = document.getElementById("clearBtn");
 const autoToggle = document.getElementById("autoToggle");
 
-let picked = []; // {letter, num, tileIndex}
+let picked = [];
 let tiles = [];
 let autoLock = null;
 
@@ -237,7 +267,6 @@ function fillMissing(word){
 
 function render(){
   const lettersRaw = picked.map(x=>x.letter).join("");
-
   const confirmed = detectConfirmedWord(picked.map(x=>x.letter));
 
   let badge = `<span class="badge">—</span>`;
@@ -249,15 +278,14 @@ function render(){
   } else if (confirmed){
     badge = `<span class="badge ok">${confirmed}</span>`;
     const ordered = buildOrdered(confirmed, picked);
-
     const missBadge = ordered.missing.length
       ? `<span class="badge warn">codes manquants</span>`
       : `<span class="badge ok">OK</span>`;
 
     orderedHtml = `
       <div class="row">
-        <div>Mot (ordre) : <b class="big">${ordered.orderedLetters}</b> ${missBadge}</div>
-        <div>Code (ordre) : <code>${ordered.orderedNums}</code></div>
+        <div>Mot : <b class="big">${ordered.orderedLetters}</b> ${missBadge}</div>
+        <div>Code : <code>${ordered.orderedNums}</code></div>
       </div>
     `;
   } else {
@@ -298,22 +326,38 @@ function clearAll(){
   render();
 }
 
+/* Ajuste la hauteur des tuiles pour essayer de tout faire tenir (mobile) */
+function fitTilesMobile(){
+  if (window.innerWidth > 600) {
+    document.documentElement.style.setProperty("--tileH", "auto");
+    return;
+  }
+
+  const infoH = Math.round(window.innerHeight * 0.25);
+  const approxControls = 92;
+  const avail = window.innerHeight - infoH - approxControls - 120; // marges titre/padding
+
+  const rows = 5; // 15 symboles => 5 lignes de 3
+  const gap = 8;
+  const tileH = Math.max(58, Math.floor((avail - gap*(rows-1)) / rows));
+
+  document.documentElement.style.setProperty("--tileH", tileH + "px");
+}
+
 glyphs.forEach((g, idx) => {
   const d = document.createElement("div");
   d.className = "sym";
   d.innerHTML = `<svg viewBox="0 0 100 100">${g.svg}</svg>`;
   d.onclick = () => {
-  if (navigator.vibrate) navigator.vibrate(15); // 🔔 vibration
-
-  if (picked.length >= MAX_LETTERS) return;
-  picked.push({letter:g.letter, num:g.num, tileIndex: idx});
-  autoLock = null;
-  applyHighlight();
-  render();
-  maybeAuto();
-  render();
-};
-
+    if (navigator.vibrate) navigator.vibrate(15);
+    if (picked.length >= MAX_LETTERS) return;
+    picked.push({letter:g.letter, num:g.num, tileIndex: idx});
+    autoLock = null;
+    applyHighlight();
+    render();
+    maybeAuto();
+    render();
+  };
   grid.appendChild(d);
   tiles.push(d);
 });
@@ -326,6 +370,9 @@ autoToggle.onchange = () => {
   maybeAuto();
   render();
 };
+
+window.addEventListener("resize", fitTilesMobile);
+fitTilesMobile();
 
 applyHighlight();
 render();
