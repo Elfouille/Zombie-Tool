@@ -3,15 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BO7 – Décodeur (AUTO)</title>
+<title>BO7 – Décodeur</title>
 <style>
+  /* base */
+  *, *::before, *::after { box-sizing: border-box; }
   body{margin:0;background:#0b0c10;color:#fff;font-family:Arial,sans-serif;display:flex;justify-content:center;padding:20px}
-  .panel{background:#14161d;border:1px solid #2a2f3a;border-radius:16px;padding:20px;max-width:980px;width:100%}
+  .panel{background:#14161d;border:1px solid #2a2f3a;border-radius:16px;padding:20px;max-width:980px;width:100%; overflow:hidden;}
 
-  .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-  .sym{background:#0f1117;border:2px solid #2a2f3a;border-radius:14px;padding:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
+  .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px; width:100%; max-width:100%;}
+  .sym{
+    background:#0f1117;border:2px solid #2a2f3a;border-radius:14px;
+    padding:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s;
+    width:100%;
+  }
   .sym:hover{border-color:#7aa2ff}
-  .sym svg{width:64px;height:64px}
+  .sym svg{width:64px;height:64px;max-width:100%;}
 
   .sym.used{border-color:rgba(155,92,255,.55)}
   .sym.active{border-color:#9b5cff;box-shadow:0 0 14px rgba(155,92,255,.7)}
@@ -31,7 +37,7 @@
   .ok{border-color:rgba(155,92,255,.9); box-shadow:0 0 10px rgba(155,92,255,.25)}
   .warn{border-color:rgba(255,180,0,.9)}
   .row{margin-top:8px}
-  .big{font-size:22px}
+  .big{font-size:20px}
 
   .sym, button{-webkit-tap-highlight-color:transparent; user-select:none; touch-action:manipulation;}
   html, body{overscroll-behavior: contain;}
@@ -51,27 +57,32 @@
     border-top: 1px solid #2a2f3a;
     padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
     backdrop-filter: blur(8px);
-    overflow: hidden;
+
+    /* ✅ si le contenu dépasse, on scroll ICI uniquement */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
-  @media (max-width: 600px){
-    /* pas de scroll */
+  /* Mobile */
+  @media (max-width: 700px){
     html, body{height:100svh; overflow:hidden;}
     body{padding:12px}
-    .panel{height:100%; overflow:hidden; padding:12px;}
+    .panel{height:100%; padding:12px}
 
-    /* ✅ 4 colonnes */
+    /* ✅ 4 colonnes, plus aucun débordement */
     .grid{
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 8px;
-      overflow:hidden;
       margin-top: 6px;
+      padding: 0 2px;     /* micro marge pour éviter “mord” */
+      overflow:hidden;
     }
 
     .sym{
       height: var(--tileSize);
       padding: var(--tilePad);
       border-radius: 14px;
+      min-width: 0;
     }
 
     .sym svg{
@@ -96,7 +107,6 @@
 
     button{padding: 12px 16px; font-size: 16px; border-radius: 12px;}
     .output{font-size:16px}
-    .big{font-size:20px}
   }
 
   @media (hover: none){
@@ -253,6 +263,8 @@ function render(){
     const missBadge = ordered.missing.length
       ? `<span class="badge warn">codes manquants</span>`
       : `<span class="badge ok">OK</span>`;
+
+    /* ✅ on affiche UNE SEULE section "Mot" + "Code" */
     orderedHtml = `
       <div class="row">
         <div>Mot : <b class="big">${ordered.orderedLetters}</b> ${missBadge}</div>
@@ -298,7 +310,7 @@ function clearAll(){
 
 /* ✅ Auto-fit 4 colonnes */
 function fitTilesMobile(){
-  if (window.innerWidth > 600) return;
+  if (window.innerWidth > 700) return;
 
   const vvH = window.visualViewport?.height || window.innerHeight;
   const gridTop = grid.getBoundingClientRect().top;
@@ -307,22 +319,21 @@ function fitTilesMobile(){
 
   const availH = (vvH - infoH - controlsH - 10) - gridTop;
 
-  // 15 tuiles en 4 colonnes -> 4 lignes (4+4+4+3)
   const rows = 4;
   const gap = 8;
-  let tileSizeH = Math.floor((availH - gap*(rows-1)) / rows);
+  const tileSizeH = Math.floor((availH - gap*(rows-1)) / rows);
 
   const panelW = grid.getBoundingClientRect().width;
   const cols = 4;
   const tileSizeW = Math.floor((panelW - gap*(cols-1)) / cols);
 
-  let tile = Math.max(44, Math.min(tileSizeH, tileSizeW));
-  let pad = Math.max(5, Math.floor(tile * 0.12));
-  let svg = Math.max(30, tile - pad*2);
+  let tile = Math.max(42, Math.min(tileSizeH, tileSizeW));
+  let pad  = Math.max(5, Math.floor(tile * 0.12));
+  let svg  = Math.max(28, tile - pad*2);
 
   document.documentElement.style.setProperty("--tileSize", tile + "px");
-  document.documentElement.style.setProperty("--tilePad", pad + "px");
-  document.documentElement.style.setProperty("--svgSize", svg + "px");
+  document.documentElement.style.setProperty("--tilePad",  pad + "px");
+  document.documentElement.style.setProperty("--svgSize",  svg + "px");
 }
 
 glyphs.forEach((g, idx) => {
