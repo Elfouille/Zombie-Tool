@@ -22,11 +22,12 @@
   .sym svg line,.sym svg rect,.sym svg path{stroke:#fff !important;fill:none !important;stroke-linecap:square;stroke-linejoin:miter}
   .sym svg circle{fill:#fff !important;stroke:none !important}
 
+  /* Desktop controls */
   .controls{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
   button{background:#0f1117;color:#fff;border:1px solid #2a2f3a;border-radius:10px;padding:10px 14px;cursor:pointer}
   button:hover{border-color:#7aa2ff}
 
-  .output{margin-top:0;font-size:18px;line-height:1.35}
+  .output{margin:0;font-size:18px;line-height:1.35}
   code{background:#000;padding:4px 8px;border-radius:6px}
   .small{opacity:.8;font-size:13px}
   .badge{display:inline-block;padding:2px 10px;border-radius:999px;border:1px solid #2a2f3a;background:#0f1117;margin-left:8px}
@@ -48,10 +49,10 @@
   /* Anti scroll élastique */
   html, body{overscroll-behavior: contain;}
 
-  /* ===== Mode mobile: bottom panel + grille 3 colonnes auto-fit ===== */
+  /* ===== Bottom info panel ===== */
   :root{
-    --infoH: 25svh;      /* ~1/4 écran */
-    --tileH: auto;       /* sera rempli par JS sur mobile */
+    --infoH: 20svh; /* ↓ plus petit, + place pour les tuiles */
+    --tileH: auto;
   }
 
   .bottomPanel{
@@ -65,28 +66,29 @@
     border-top: 1px solid #2a2f3a;
     padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
     backdrop-filter: blur(8px);
-    overflow: auto;
+    overflow: hidden; /* pas de scroll dans le panel */
   }
 
-  .controls{
-    position: sticky;
-    bottom: var(--infoH);
-    z-index: 60;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background: linear-gradient(transparent, rgba(11,12,16,.92) 30%);
-    backdrop-filter: blur(6px);
-  }
-
+  /* ===== Mobile layout ===== */
   @media (max-width: 600px){
     body{padding:12px}
-    .panel{padding:14px}
+
+    /* pas de scroll global */
+    html, body{
+      height: 100svh;
+      overflow: hidden;
+    }
+
+    .panel{
+      height: 100%;
+      overflow: hidden;
+      padding: 14px;
+    }
 
     .grid{
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      /* espace pour éviter que le bas de la grille soit masqué */
-      padding-bottom: calc(var(--infoH) + 90px);
+      overflow: hidden;     /* pas de scroll */
     }
 
     .sym{
@@ -100,6 +102,24 @@
       height: auto;
       aspect-ratio: 1 / 1;
       max-height: calc(var(--tileH, 120px) - 18px);
+    }
+
+    /* Boutons FIXED au-dessus du panneau infos */
+    .controls{
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 24px);
+      max-width: 980px;
+
+      bottom: calc(var(--infoH) + 10px);
+      z-index: 70;
+
+      margin-top: 0;
+      padding: 10px 0;
+      background: linear-gradient(transparent, rgba(11,12,16,.92) 30%);
+      backdrop-filter: blur(6px);
+      justify-content: center;
     }
 
     button{
@@ -144,7 +164,6 @@
 </div>
 
 <script>
-/* ===== Paires uniques -> mot ===== */
 const PAIR_TO_WORD = [
   {a:"G", b:"I", word:"ENGINE"},
   {a:"L", b:"A", word:"LAUNCH"},
@@ -154,7 +173,6 @@ const PAIR_TO_WORD = [
 
 const MAX_LETTERS = 6;
 
-/* ===== Glyphes : SVG + num + lettre ===== */
 const glyphs = [
   {svg:`<rect x="10" y="10" width="80" height="80" stroke-width="10"/>`, num:"04", letter:"E"},
   {svg:`<rect x="10" y="10" width="80" height="80" stroke-width="10"/><circle cx="50" cy="50" r="10"/>`, num:"13", letter:"N"},
@@ -175,7 +193,6 @@ const glyphs = [
   {svg:`<line x1="10" y1="10" x2="10" y2="90" stroke-width="10"/><line x1="10" y1="10" x2="90" y2="10" stroke-width="10"/><circle cx="55" cy="55" r="10"/>`, num:"17", letter:"R"},
 ];
 
-/* ===== UI/state ===== */
 const grid = document.getElementById("grid");
 const out = document.getElementById("out");
 const undoBtn = document.getElementById("undoBtn");
@@ -326,20 +343,20 @@ function clearAll(){
   render();
 }
 
-/* Ajuste la hauteur des tuiles pour essayer de tout faire tenir (mobile) */
+/* Ajuste la hauteur des tuiles pour tout faire tenir (mobile) */
 function fitTilesMobile(){
   if (window.innerWidth > 600) {
     document.documentElement.style.setProperty("--tileH", "auto");
     return;
   }
 
-  const infoH = Math.round(window.innerHeight * 0.25);
-  const approxControls = 92;
-  const avail = window.innerHeight - infoH - approxControls - 120; // marges titre/padding
+  const infoH = Math.round(window.innerHeight * 0.20);
+  const approxControls = 78;
+  const avail = window.innerHeight - infoH - approxControls - 140; // marges titre/padding
 
   const rows = 5; // 15 symboles => 5 lignes de 3
   const gap = 8;
-  const tileH = Math.max(58, Math.floor((avail - gap*(rows-1)) / rows));
+  const tileH = Math.max(56, Math.floor((avail - gap*(rows-1)) / rows));
 
   document.documentElement.style.setProperty("--tileH", tileH + "px");
 }
