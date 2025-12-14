@@ -8,16 +8,8 @@
   body{margin:0;background:#0b0c10;color:#fff;font-family:Arial,sans-serif;display:flex;justify-content:center;padding:20px}
   .panel{background:#14161d;border:1px solid #2a2f3a;border-radius:16px;padding:20px;max-width:980px;width:100%}
 
-  h2{text-align:center;margin:0 0 10px}
-  .hint{opacity:.85;font-size:13px;margin-bottom:10px;text-align:center}
-  .toggle{display:flex;align-items:center;gap:10px;margin-top:8px;justify-content:center;font-size:13px;opacity:.9}
-  .toggle input{transform:scale(1.2)}
-
   .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-  .sym{
-    background:#0f1117;border:2px solid #2a2f3a;border-radius:14px;
-    padding:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s
-  }
+  .sym{background:#0f1117;border:2px solid #2a2f3a;border-radius:14px;padding:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
   .sym:hover{border-color:#7aa2ff}
   .sym svg{width:64px;height:64px}
 
@@ -28,7 +20,6 @@
   .sym svg line,.sym svg rect,.sym svg path{stroke:#fff !important;fill:none !important;stroke-linecap:square;stroke-linejoin:miter}
   .sym svg circle{fill:#fff !important;stroke:none !important}
 
-  /* Desktop controls */
   .controls{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;justify-content:center}
   button{background:#0f1117;color:#fff;border:1px solid #2a2f3a;border-radius:10px;padding:10px 14px;cursor:pointer}
   button:hover{border-color:#7aa2ff}
@@ -42,15 +33,14 @@
   .row{margin-top:8px}
   .big{font-size:22px}
 
-  /* Anti double-tap / sélection */
   .sym, button{-webkit-tap-highlight-color:transparent; user-select:none; touch-action:manipulation;}
   html, body{overscroll-behavior: contain;}
 
   :root{
-    --infoH: 15svh;         /* panel bas */
-    --tileSize: 76px;       /* calculé en JS */
-    --tilePad: 10px;        /* calculé en JS */
-    --svgSize: 58px;        /* calculé en JS */
+    --infoH: 15svh;
+    --tileSize: 76px;
+    --tilePad: 10px;
+    --svgSize: 58px;
   }
 
   .bottomPanel{
@@ -65,18 +55,14 @@
   }
 
   @media (max-width: 600px){
-    body{padding:12px}
-
-    /* ✅ on cache le header du module pour gagner de la place */
-    h2, .hint, .toggle{display:none !important;}
-
     /* pas de scroll */
     html, body{height:100svh; overflow:hidden;}
-    .panel{height:100%; overflow:hidden; padding:14px;}
+    body{padding:12px}
+    .panel{height:100%; overflow:hidden; padding:12px;}
 
+    /* ✅ 4 colonnes */
     .grid{
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 8px;
       overflow:hidden;
       margin-top: 6px;
@@ -122,13 +108,6 @@
 
 <body>
 <div class="panel">
-  <h2>BO7 – Décodeur Symboles</h2>
-  <div class="hint">Clique les symboles dans l’ordre affiché en jeu</div>
-
-  <div class="toggle">
-    <label><input type="checkbox" id="autoToggle" checked> Mode AUTO</label>
-  </div>
-
   <div class="grid" id="grid"></div>
 
   <div class="controls" id="controls">
@@ -174,7 +153,6 @@ const grid = document.getElementById("grid");
 const out = document.getElementById("out");
 const undoBtn = document.getElementById("undoBtn");
 const clearBtn = document.getElementById("clearBtn");
-const autoToggle = document.getElementById("autoToggle");
 const controls = document.getElementById("controls");
 const bottomPanel = document.getElementById("bottomPanel");
 
@@ -275,7 +253,6 @@ function render(){
     const missBadge = ordered.missing.length
       ? `<span class="badge warn">codes manquants</span>`
       : `<span class="badge ok">OK</span>`;
-
     orderedHtml = `
       <div class="row">
         <div>Mot : <b class="big">${ordered.orderedLetters}</b> ${missBadge}</div>
@@ -294,7 +271,6 @@ function render(){
 }
 
 function maybeAuto(){
-  if (!autoToggle.checked) return;
   const confirmed = detectConfirmedWord(picked.map(x=>x.letter));
   if (confirmed && confirmed !== "AMBIGU"){
     const before = picked.length;
@@ -320,7 +296,7 @@ function clearAll(){
   render();
 }
 
-/* ✅ FORCE 15 tuiles visibles : on ajuste à partir de largeur/hauteur */
+/* ✅ Auto-fit 4 colonnes */
 function fitTilesMobile(){
   if (window.innerWidth > 600) return;
 
@@ -329,24 +305,21 @@ function fitTilesMobile(){
   const infoH = bottomPanel.getBoundingClientRect().height;
   const controlsH = controls.getBoundingClientRect().height;
 
-  const availH = (vvH - infoH - controlsH - 10) - gridTop;  // 10 marge
-  const rows = 5;
+  const availH = (vvH - infoH - controlsH - 10) - gridTop;
+
+  // 15 tuiles en 4 colonnes -> 4 lignes (4+4+4+3)
+  const rows = 4;
   const gap = 8;
   let tileSizeH = Math.floor((availH - gap*(rows-1)) / rows);
 
-  // taille max par largeur (3 colonnes)
   const panelW = grid.getBoundingClientRect().width;
-  const cols = 3;
+  const cols = 4;
   const tileSizeW = Math.floor((panelW - gap*(cols-1)) / cols);
 
-  // on prend la plus petite
-  let tile = Math.max(46, Math.min(tileSizeH, tileSizeW));
+  let tile = Math.max(44, Math.min(tileSizeH, tileSizeW));
+  let pad = Math.max(5, Math.floor(tile * 0.12));
+  let svg = Math.max(30, tile - pad*2);
 
-  // padding + svg proportionnels
-  let pad = Math.max(6, Math.floor(tile * 0.13));
-  let svg = Math.max(34, tile - pad*2);
-
-  // applique
   document.documentElement.style.setProperty("--tileSize", tile + "px");
   document.documentElement.style.setProperty("--tilePad", pad + "px");
   document.documentElement.style.setProperty("--svgSize", svg + "px");
@@ -373,19 +346,13 @@ glyphs.forEach((g, idx) => {
 undoBtn.onclick = undo;
 clearBtn.onclick = clearAll;
 
-autoToggle.onchange = () => {
-  autoLock = null;
-  maybeAuto();
-  render();
-};
+applyHighlight();
+render();
+setTimeout(fitTilesMobile, 0);
 
 window.addEventListener("resize", fitTilesMobile);
 window.visualViewport?.addEventListener("resize", fitTilesMobile);
 window.visualViewport?.addEventListener("scroll", fitTilesMobile);
-
-applyHighlight();
-render();
-setTimeout(fitTilesMobile, 0);
 </script>
 </body>
 </html>
