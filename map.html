@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modules</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b0c10">
+</head>
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+</script>
+
+<body>
+<div class="panel">
+  <div class="topbar">
+    <div>
+      <h1 id="mapName">Map</h1>
+      <div class="hint">Choisis un module</div>
+    </div>
+    <a class="btn" href="index.html">⬅ Maps</a>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</div>
+
+<script src="maps.js"></script>
+<script src="assets/app.js"></script>
+
+<script>
+(async () => {
+  const mapId = qs("map");
+  const cfg = await loadConfig();
+  const map = cfg.maps.find(m => m.id === mapId);
+  if (!map) return;
+
+  document.title = map.name;
+  document.getElementById("mapName").textContent = map.name;
+
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+
+  map.modules.forEach(mod => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <div class="title">${esc(mod.name)}</div>
+      <div class="sub">Ouvrir le module</div>
+    `;
+    card.onclick = () => go(`module.html?map=${map.id}&mod=${mod.id}`);
+    grid.appendChild(card);
+  });
+})();
+</script>
+</body>
+</html>

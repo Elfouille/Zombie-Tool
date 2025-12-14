@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zombies Tools</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b0c10">
+</head>
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+</script>
+
+<body>
+<div class="panel">
+  <div class="topbar">
+    <div>
+      <h1 id="title">Zombies Tools</h1>
+      <div class="hint">Choisis une map</div>
+    </div>
+    <a class="btn" href="index.html">🏠 Accueil</a>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="kv">
+    Astuce : pour ajouter une map ou un module, modifie seulement <b>maps.js</b>.
+  </div>
+</div>
+
+<!-- IMPORTANT : maps.js AVANT app.js -->
+<script src="maps.js"></script>
+<script src="assets/app.js"></script>
+
+<script>
+(async () => {
+  const cfg = await loadConfig();
+  document.getElementById("title").textContent = cfg.title || "Zombies Tools";
+
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+
+  cfg.maps.forEach(map => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <div class="title">${esc(map.name)}</div>
+      <div class="sub">${map.modules.length} module(s)</div>
+    `;
+    card.onclick = () => go(`map.html?map=${map.id}`);
+    grid.appendChild(card);
+  });
+})();
+</script>
+</body>
+</html>
