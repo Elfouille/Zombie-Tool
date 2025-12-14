@@ -7,7 +7,56 @@
 <link rel="stylesheet" href="assets/style.css">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0b0c10">
+
+<style>
+  /* ✅ Mobile: gagner de la place + iframe pleine hauteur */
+  @media (max-width: 700px){
+    html, body{
+      height: 100%;
+      overflow: hidden; /* évite le scroll du shell */
+    }
+
+    /* Le panel shell occupe tout l'écran */
+    .moduleShell{
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Topbar compacte */
+    .topbar{
+      padding: 10px 10px !important;
+      margin-bottom: 8px !important;
+    }
+
+    /* ✅ Cache le "carré rouge" (titre + sous-titre) */
+    #modName,
+    #modHint{
+      display: none !important;
+    }
+
+    /* Garde les boutons, en plein largeur */
+    .topbar .row{
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    /* Iframe prend tout le reste */
+    .iframeWrap{
+      flex: 1;
+      min-height: 0; /* important pour flex */
+    }
+    #frame{
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  }
+</style>
 </head>
+
 <script>
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js");
