@@ -46,12 +46,10 @@
     touch-action: manipulation;
   }
 
-  /* Anti scroll élastique */
   html, body{overscroll-behavior: contain;}
 
-  /* ===== Bottom info panel ===== */
   :root{
-    --infoH: 20svh; /* ↓ plus petit, + place pour les tuiles */
+    --infoH: 15svh; /* ✅ 15% */
     --tileH: auto;
   }
 
@@ -66,17 +64,15 @@
     border-top: 1px solid #2a2f3a;
     padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
     backdrop-filter: blur(8px);
-    overflow: hidden; /* pas de scroll dans le panel */
+    overflow: hidden;
   }
 
-  /* ===== Mobile layout ===== */
   @media (max-width: 600px){
     body{padding:12px}
 
-    /* pas de scroll global */
     html, body{
       height: 100svh;
-      overflow: hidden;
+      overflow: hidden; /* ✅ pas de scroll global */
     }
 
     .panel{
@@ -87,8 +83,9 @@
 
     .grid{
       grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(5, 1fr); /* ✅ 5 lignes fixes */
       gap: 8px;
-      overflow: hidden;     /* pas de scroll */
+      overflow: hidden;
     }
 
     .sym{
@@ -132,7 +129,6 @@
     .big{font-size:20px}
   }
 
-  /* Supprime hover collant mobile */
   @media (hover: none){
     .sym:hover{border-color:#2a2f3a; box-shadow:none}
     button:hover{border-color:#2a2f3a}
@@ -143,7 +139,6 @@
 <body>
 <div class="panel">
   <h2>BO7 – Décodeur Symboles</h2>
-
   <div class="hint">Clique les symboles dans l’ordre affiché en jeu</div>
 
   <div class="toggle">
@@ -152,13 +147,12 @@
 
   <div class="grid" id="grid"></div>
 
-  <div class="controls">
+  <div class="controls" id="controls">
     <button id="undoBtn">⌫ Retour</button>
     <button id="clearBtn">Effacer</button>
   </div>
 
-  <!-- panneau infos fixe en bas -->
-  <div class="bottomPanel">
+  <div class="bottomPanel" id="bottomPanel">
     <div class="output" id="out"></div>
   </div>
 </div>
@@ -198,6 +192,8 @@ const out = document.getElementById("out");
 const undoBtn = document.getElementById("undoBtn");
 const clearBtn = document.getElementById("clearBtn");
 const autoToggle = document.getElementById("autoToggle");
+const controls = document.getElementById("controls");
+const bottomPanel = document.getElementById("bottomPanel");
 
 let picked = [];
 let tiles = [];
@@ -244,7 +240,6 @@ function buildOrdered(word, pickedList){
       missing.push(ch);
     }
   }
-
   return { orderedLetters: orderedLetters.join(""), orderedNums: orderedNums.join("/"), missing };
 }
 
@@ -277,7 +272,6 @@ function fillMissing(word){
       }
     }
   }
-
   autoLock = word;
   applyHighlight();
 }
@@ -343,20 +337,25 @@ function clearAll(){
   render();
 }
 
-/* Ajuste la hauteur des tuiles pour tout faire tenir (mobile) */
+/* ✅ Calcul dynamique (iframe-safe) : mesure réelle de l'espace */
 function fitTilesMobile(){
   if (window.innerWidth > 600) {
     document.documentElement.style.setProperty("--tileH", "auto");
     return;
   }
 
-  const infoH = Math.round(window.innerHeight * 0.20);
-  const approxControls = 78;
-  const avail = window.innerHeight - infoH - approxControls - 140; // marges titre/padding
+  const vh = (window.visualViewport?.height || window.innerHeight);
+
+  const gridTop = grid.getBoundingClientRect().top;
+  const controlsH = controls.getBoundingClientRect().height;
+  const infoH = bottomPanel.getBoundingClientRect().height;
+
+  const bottomLimit = vh - infoH - controlsH - 12;     // 12px marge
+  const avail = bottomLimit - gridTop;
 
   const rows = 5; // 15 symboles => 5 lignes de 3
   const gap = 8;
-  const tileH = Math.max(56, Math.floor((avail - gap*(rows-1)) / rows));
+  const tileH = Math.max(52, Math.floor((avail - gap*(rows-1)) / rows));
 
   document.documentElement.style.setProperty("--tileH", tileH + "px");
 }
@@ -389,10 +388,12 @@ autoToggle.onchange = () => {
 };
 
 window.addEventListener("resize", fitTilesMobile);
-fitTilesMobile();
+window.visualViewport?.addEventListener("resize", fitTilesMobile);
+window.visualViewport?.addEventListener("scroll", fitTilesMobile);
 
 applyHighlight();
 render();
+setTimeout(fitTilesMobile, 0);
 </script>
 </body>
 </html>
