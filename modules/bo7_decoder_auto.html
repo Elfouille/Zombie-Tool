@@ -7,17 +7,11 @@
 <style>
   body{margin:0;background:#0b0c10;color:#fff;font-family:Arial,sans-serif;display:flex;justify-content:center;padding:20px}
   .panel{background:#14161d;border:1px solid #2a2f3a;border-radius:16px;padding:20px;max-width:980px;width:100%}
-
   h2{text-align:center;margin:0 0 10px}
   .hint{opacity:.85;font-size:13px;margin-bottom:10px;text-align:center}
-  .toggle{display:flex;align-items:center;gap:10px;margin-top:8px;justify-content:center;font-size:13px;opacity:.9}
-  .toggle input{transform:scale(1.2)}
 
   .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-  .sym{
-    background:#0f1117;border:2px solid #2a2f3a;border-radius:14px;
-    padding:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s
-  }
+  .sym{background:#0f1117;border:2px solid #2a2f3a;border-radius:14px;padding:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
   .sym:hover{border-color:#7aa2ff}
   .sym svg{width:64px;height:64px}
 
@@ -29,7 +23,7 @@
   .sym svg circle{fill:#fff !important;stroke:none !important}
 
   /* Desktop controls */
-  .controls{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;justify-content:center}
+  .controls{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
   button{background:#0f1117;color:#fff;border:1px solid #2a2f3a;border-radius:10px;padding:10px 14px;cursor:pointer}
   button:hover{border-color:#7aa2ff}
 
@@ -42,19 +36,28 @@
   .row{margin-top:8px}
   .big{font-size:22px}
 
+  .toggle{display:flex;align-items:center;gap:10px;margin-top:8px;justify-content:center;font-size:13px;opacity:.9}
+  .toggle input{transform:scale(1.2)}
+
   /* Anti double-tap / sélection */
-  .sym, button{-webkit-tap-highlight-color:transparent; user-select:none; touch-action:manipulation;}
+  .sym, button{
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    touch-action: manipulation;
+  }
+
   html, body{overscroll-behavior: contain;}
 
   :root{
-    --infoH: 15svh;         /* panel bas */
-    --tileSize: 76px;       /* calculé en JS */
-    --tilePad: 10px;        /* calculé en JS */
-    --svgSize: 58px;        /* calculé en JS */
+    --infoH: 15svh; /* ✅ 15% */
+    --tileH: auto;
   }
 
   .bottomPanel{
-    position: fixed; left:0; right:0; bottom:0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
     height: var(--infoH);
     z-index: 55;
     background: rgba(11,12,16,.95);
@@ -67,48 +70,61 @@
   @media (max-width: 600px){
     body{padding:12px}
 
-    /* ✅ on cache le header du module pour gagner de la place */
-    h2, .hint, .toggle{display:none !important;}
+    html, body{
+      height: 100svh;
+      overflow: hidden; /* ✅ pas de scroll global */
+    }
 
-    /* pas de scroll */
-    html, body{height:100svh; overflow:hidden;}
-    .panel{height:100%; overflow:hidden; padding:14px;}
+    .panel{
+      height: 100%;
+      overflow: hidden;
+      padding: 14px;
+    }
 
     .grid{
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(5, 1fr);
+      grid-template-rows: repeat(5, 1fr); /* ✅ 5 lignes fixes */
       gap: 8px;
-      overflow:hidden;
-      margin-top: 6px;
+      overflow: hidden;
     }
 
     .sym{
-      height: var(--tileSize);
-      padding: var(--tilePad);
+      height: var(--tileH);
+      padding: 10px;
       border-radius: 14px;
     }
 
     .sym svg{
-      width: var(--svgSize);
-      height: var(--svgSize);
+      width: min(64px, 18vw);
+      height: auto;
+      aspect-ratio: 1 / 1;
+      max-height: calc(var(--tileH, 120px) - 18px);
     }
 
-    /* Boutons FIXED au-dessus du panel bas */
+    /* Boutons FIXED au-dessus du panneau infos */
     .controls{
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
       width: calc(100% - 24px);
       max-width: 980px;
-      bottom: calc(var(--infoH) + 8px);
+
+      bottom: calc(var(--infoH) + 10px);
       z-index: 70;
-      margin:0;
-      padding: 8px 0;
+
+      margin-top: 0;
+      padding: 10px 0;
       background: linear-gradient(transparent, rgba(11,12,16,.92) 30%);
       backdrop-filter: blur(6px);
+      justify-content: center;
     }
 
-    button{padding: 12px 16px; font-size: 16px; border-radius: 12px;}
+    button{
+      padding: 12px 16px;
+      font-size: 16px;
+      border-radius: 12px;
+    }
+
     .output{font-size:16px}
     .big{font-size:20px}
   }
@@ -148,6 +164,7 @@ const PAIR_TO_WORD = [
   {a:"E", b:"T", word:"ROCKET"},
   {a:"O", b:"N", word:"WEAPON"},
 ];
+
 const MAX_LETTERS = 6;
 
 const glyphs = [
@@ -320,36 +337,27 @@ function clearAll(){
   render();
 }
 
-/* ✅ FORCE 15 tuiles visibles : on ajuste à partir de largeur/hauteur */
+/* ✅ Calcul dynamique (iframe-safe) : mesure réelle de l'espace */
 function fitTilesMobile(){
-  if (window.innerWidth > 600) return;
+  if (window.innerWidth > 600) {
+    document.documentElement.style.setProperty("--tileH", "auto");
+    return;
+  }
 
-  const vvH = window.visualViewport?.height || window.innerHeight;
+  const vh = (window.visualViewport?.height || window.innerHeight);
+
   const gridTop = grid.getBoundingClientRect().top;
-  const infoH = bottomPanel.getBoundingClientRect().height;
   const controlsH = controls.getBoundingClientRect().height;
+  const infoH = bottomPanel.getBoundingClientRect().height;
 
-  const availH = (vvH - infoH - controlsH - 10) - gridTop;  // 10 marge
-  const rows = 5;
+  const bottomLimit = vh - infoH - controlsH - 12;     // 12px marge
+  const avail = bottomLimit - gridTop;
+
+  const rows = 5; // 15 symboles => 5 lignes de 3
   const gap = 8;
-  let tileSizeH = Math.floor((availH - gap*(rows-1)) / rows);
+  const tileH = Math.max(52, Math.floor((avail - gap*(rows-1)) / rows));
 
-  // taille max par largeur (3 colonnes)
-  const panelW = grid.getBoundingClientRect().width;
-  const cols = 3;
-  const tileSizeW = Math.floor((panelW - gap*(cols-1)) / cols);
-
-  // on prend la plus petite
-  let tile = Math.max(46, Math.min(tileSizeH, tileSizeW));
-
-  // padding + svg proportionnels
-  let pad = Math.max(6, Math.floor(tile * 0.13));
-  let svg = Math.max(34, tile - pad*2);
-
-  // applique
-  document.documentElement.style.setProperty("--tileSize", tile + "px");
-  document.documentElement.style.setProperty("--tilePad", pad + "px");
-  document.documentElement.style.setProperty("--svgSize", svg + "px");
+  document.documentElement.style.setProperty("--tileH", tileH + "px");
 }
 
 glyphs.forEach((g, idx) => {
