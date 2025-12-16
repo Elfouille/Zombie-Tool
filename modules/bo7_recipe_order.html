@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BO7 – Recette (ordre)</title>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body{
+    margin:0;
+    background:#0b0c10;
+    color:#fff;
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    padding:20px;
+  }
+
+  .panel{
+    background:#14161d;
+    border:1px solid #2a2f3a;
+    border-radius:16px;
+    padding:20px;
+    max-width:980px;
+    width:100%;
+    overflow:hidden;
+  }
+
+  /* Desktop: 5 colonnes */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+    width:100%;
+  }
+
+  .sym{
+    background:#0f1117;
+    border:2px solid #2a2f3a;
+    border-radius:14px;
+    padding:14px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.15s;
+    -webkit-tap-highlight-color:transparent;
+    user-select:none;
+    touch-action:manipulation;
+  }
+
+  .sym:hover{ border-color:#7aa2ff; }
+
+  .sym svg{ width:64px;height:64px; }
+
+  .sym.used{ border-color:rgba(155,92,255,.55); }
+  .sym.active{
+    border-color:#9b5cff;
+    box-shadow:0 0 14px rgba(155,92,255,.7);
+  }
+
+  .sym.used svg,
+  .sym.active svg{
+    filter:drop-shadow(0 0 6px rgba(155,92,255,.8));
+  }
+
+  .sym svg line,
+  .sym svg rect,
+  .sym svg path{
+    stroke:#fff;
+    fill:none;
+    stroke-width:10;
+    stroke-linecap:square;
+    stroke-linejoin:miter;
+  }
+
+  .sym svg circle{
+    fill:#fff;
+    stroke:none;
+  }
+
+  .controls{
+    display:flex;
+    gap:10px;
+    margin-top:14px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  button{
+    background:#0f1117;
+    color:#fff;
+    border:1px solid #2a2f3a;
+    border-radius:10px;
+    padding:10px 14px;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+    user-select:none;
+  }
+  button:hover{ border-color:#7aa2ff; }
+
+  :root{
+    --infoH: 50svh;
+    --tileSize: 86px;
+    --tilePad: 10px;
+    --svgSize: 62px;
+  }
+
+  .bottomPanel{
+    position:fixed;
+    left:0;right:0;bottom:0;
+    height:var(--infoH);
+    z-index:55;
+    background:rgba(11,12,16,.95);
+    border-top:1px solid #2a2f3a;
+    padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+    backdrop-filter:blur(8px);
+    overflow:hidden;
+  }
+
+  .output{
+    margin:0;
+    font-size:16px;
+    line-height:1.35;
+    text-align:center;
+  }
+
+  .small{ opacity:.8; font-size:13px; }
+
+  /* Résultat en bas: grille 3 colonnes */
+  .stepsGrid{
+    margin-top:10px;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:10px;
+    align-items:start;
+  }
+
+  .stepItem{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    gap:6px;
+    background:#0f1117;
+    border:1px solid #2a2f3a;
+    border-radius:14px;
+    padding:10px 8px;
+    min-width:0;
+  }
+
+  .stepIdx{
+    width:26px;height:26px;
+    border-radius:999px;
+    border:1px solid rgba(155,92,255,.75);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:13px;
+    flex:0 0 auto;
+  }
+
+  .thumb{
+    width:54px;height:54px;
+    border-radius:12px;
+    border:1px solid #2a2f3a;
+    object-fit:cover;
+    background:#000;
+  }
+
+  .stepName{
+    font-size:14px;
+    text-align:center;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width: 100%;
+  }
+
+  /* Mobile */
+  @media (max-width: 700px){
+    html, body{ height:100svh; overflow:hidden; }
+    body{ padding:12px; }
+    .panel{ height:100%; padding:12px; }
+
+    /* ✅ 6 colonnes pour centrer parfaitement 3+2 */
+    .grid{
+      grid-template-columns:repeat(6, minmax(0, 1fr));
+      gap:10px;
+      padding:0 2px;
+    }
+
+    /* chaque tuile prend 2 colonnes */
+    .sym{
+      height:var(--tileSize);
+      padding:var(--tilePad);
+      border-radius:14px;
+      min-width:0;
+      grid-column: span 2;
+    }
+
+    .sym svg{
+      width:var(--svgSize);
+      height:var(--svgSize);
+    }
+
+    /* Ligne 1: col 1-2, 3-4, 5-6 */
+    .grid .sym:nth-child(1){ grid-column: 1 / span 2; }
+    .grid .sym:nth-child(2){ grid-column: 3 / span 2; }
+    .grid .sym:nth-child(3){ grid-column: 5 / span 2; }
+
+    /* Ligne 2: col 2-3 et 4-5 (centré) */
+    .grid .sym:nth-child(4){ grid-column: 2 / span 2; }
+    .grid .sym:nth-child(5){ grid-column: 4 / span 2; }
+
+    .controls{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      width:calc(100% - 24px);
+      max-width:980px;
+      bottom:calc(var(--infoH) + 8px);
+      z-index:70;
+      margin:0;
+      padding:8px 0;
+      background:linear-gradient(transparent, rgba(11,12,16,.92) 30%);
+      backdrop-filter:blur(6px);
+    }
+
+    button{
+      padding:12px 16px;
+      font-size:16px;
+      border-radius:12px;
+    }
+
+    /* Résultat: centrer la 2e ligne (si 4 ou 5 items) */
+    .stepsGrid .stepItem:nth-child(4){ grid-column:2; }
+    .stepsGrid .stepItem:nth-child(5){ grid-column:3; }
+  }
+</style>
+</head>
+
+<body>
+<div class="panel">
+  <div class="grid" id="grid"></div>
+
+  <div class="controls" id="controls">
+    <button id="undoBtn">⌫ Retour</button>
+    <button id="clearBtn">Effacer</button>
+  </div>
+
+  <div class="bottomPanel" id="bottomPanel">
+    <div class="output" id="out"></div>
+    <div class="stepsGrid" id="steps"></div>
+  </div>
+</div>
+
+<script>
+const MAX_STEPS = 3;
+const imgUrl = (file) => new URL(`../assets/ingredients/${file}`, document.baseURI).href;
+
+const glyphs = [
+  { name:"Os", img:imgUrl("os.png"),
+    svg:`<line x1="30" y1="20" x2="70" y2="50"/>
+         <line x1="30" y1="80" x2="70" y2="50"/>` },
+
+  { name:"Champi", img:imgUrl("champi.png"),
+    svg:`<g transform="rotate(90 50 50)">
+           <line x1="20" y1="20" x2="20" y2="80"/>
+           <line x1="20" y1="80" x2="80" y2="80"/>
+           <line x1="80" y1="20" x2="80" y2="80"/>
+         </g>` },
+
+  { name:"Yeux", img:imgUrl("yeux.png"),
+    svg:`<g transform="rotate(90 50 50)">
+           <line x1="20" y1="20" x2="20" y2="80"/>
+           <line x1="20" y1="80" x2="80" y2="80"/>
+           <line x1="80" y1="20" x2="80" y2="80"/>
+           <circle cx="50" cy="50" r="8"/>
+         </g>` },
+
+  { name:"Viande", img:imgUrl("viande.png"),
+    svg:`<line x1="10" y1="10" x2="10" y2="90"/>
+         <line x1="10" y1="90" x2="90" y2="90"/>` },
+
+  { name:"Langue", img:imgUrl("langue.png"),
+    svg:`<line x1="10" y1="10" x2="10" y2="90"/>
+         <line x1="10" y1="90" x2="90" y2="90"/>
+         <circle cx="38" cy="58" r="9"/>` },
+];
+
+const grid = document.getElementById("grid");
+const out = document.getElementById("out");
+const stepsEl = document.getElementById("steps");
+const undoBtn = document.getElementById("undoBtn");
+const clearBtn = document.getElementById("clearBtn");
+const controls = document.getElementById("controls");
+const bottomPanel = document.getElementById("bottomPanel");
+
+let picked = [];
+let tiles = [];
+
+function applyHighlight(){
+  tiles.forEach(t => t.classList.remove("used","active"));
+  picked.forEach(p => tiles[p.tileIndex]?.classList.add("used"));
+  if (picked.length) tiles[picked[picked.length-1].tileIndex]?.classList.add("active");
+}
+
+function render(){
+  out.innerHTML = `
+    <div>Étapes : <b>${picked.length}</b> <span class="small">(max ${MAX_STEPS})</span></div>
+    <div class="small" style="margin-top:6px;">${picked.map(x=>x.name).join(" → ") || "—"}</div>
+  `;
+
+  stepsEl.innerHTML = "";
+  picked.forEach((p, i) => {
+    const d = document.createElement("div");
+    d.className = "stepItem";
+    d.innerHTML = `
+      <div class="stepIdx">${i+1}</div>
+      <img class="thumb" src="${p.img}" alt="">
+      <div class="stepName">${p.name}</div>
+    `;
+    stepsEl.appendChild(d);
+  });
+}
+
+function undo(){
+  if(!picked.length) return;
+  picked.pop();
+  applyHighlight();
+  render();
+}
+
+function clearAll(){
+  picked = [];
+  applyHighlight();
+  render();
+}
+
+function fitTilesMobile(){
+  if (window.innerWidth > 700) return;
+
+  const vvH = window.visualViewport?.height || window.innerHeight;
+  const gridTop = grid.getBoundingClientRect().top;
+  const infoH = bottomPanel.getBoundingClientRect().height;
+  const controlsH = controls.getBoundingClientRect().height;
+
+  const availH = (vvH - infoH - controlsH - 10) - gridTop;
+
+  const rows = 2;
+  const gap = 10;
+  const tileSizeH = Math.floor((availH - gap*(rows-1)) / rows);
+
+  const panelW = grid.getBoundingClientRect().width;
+  const cols = 3; // visuellement 3 tuiles par ligne
+  const tileSizeW = Math.floor((panelW - gap*(cols-1)) / cols);
+
+  let tile = Math.max(56, Math.min(tileSizeH, tileSizeW));
+  let pad  = Math.max(6, Math.floor(tile * 0.12));
+  let svg  = Math.max(34, tile - pad*2);
+
+  document.documentElement.style.setProperty("--tileSize", tile + "px");
+  document.documentElement.style.setProperty("--tilePad",  pad + "px");
+  document.documentElement.style.setProperty("--svgSize",  svg + "px");
+}
+
+glyphs.forEach((g, idx) => {
+  const d = document.createElement("div");
+  d.className = "sym";
+  d.innerHTML = `<svg viewBox="0 0 100 100">${g.svg}</svg>`;
+
+  d.onclick = () => {
+    if (navigator.vibrate) navigator.vibrate(15);
+    if (picked.length >= MAX_STEPS) return;
+    picked.push({ name:g.name, img:g.img, tileIndex: idx });
+    applyHighlight();
+    render();
+  };
+
+  grid.appendChild(d);
+  tiles.push(d);
+});
+
+undoBtn.onclick = undo;
+clearBtn.onclick = clearAll;
+
+applyHighlight();
+render();
+setTimeout(fitTilesMobile, 0);
+
+window.addEventListener("resize", fitTilesMobile);
+window.visualViewport?.addEventListener("resize", fitTilesMobile);
+window.visualViewport?.addEventListener("scroll", fitTilesMobile);
+</script>
+</body>
+</html>
