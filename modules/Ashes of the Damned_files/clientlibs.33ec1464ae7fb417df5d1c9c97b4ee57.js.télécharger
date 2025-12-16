@@ -1,0 +1,83 @@
+(function () {
+    let initCarousel = () => {
+        const $mediaCarouselCmp = $(".map-media-carousel-component");
+
+        $mediaCarouselCmp.each(function (index, el) {
+            const $cmp = $(el);
+            const $carousel = $cmp.find(".media-carousel");
+
+            let dataSliderIndex = $carousel.attr("data-map-grid-carousel-index");
+
+            // only 1 card in carousel, set grid container to 'none' layout
+            if (dataSliderIndex == undefined) {
+                $carousel.attr("data-map-grid-carousel-index", index);
+            }
+
+            // avoid duplicate init
+            if (dataSliderIndex && $carousel.hasClass("slick-initialized")) {
+                return;
+            }
+
+            let settings = getCarouselSettings($cmp);
+            $carousel.slick(settings);
+        });
+    };
+
+    let getCarouselSettings = ($cmp) => {
+        const $carousel = $cmp.find(".media-carousel");
+        // custom carousel navigation elements
+        const $pagination = $cmp.find(".carousel-navigation-container .slide-number");
+        const $dots = $cmp.find(".carousel-navigation-container .slide-nav");
+        const $next = $cmp.find(".carousel-navigation-container .custom-next");
+        const $prev = $cmp.find(".carousel-navigation-container .custom-prev");
+
+        const isRTL = ATVI.pageLocale == "ar" ? true : false;
+
+        // update counter/pagination
+        $carousel.on("init reInit afterChange", function (event, slick, currentSlide, nextSlide) {
+            // currentSlide is undefined on init -- set it to 0
+            var i = (currentSlide ? currentSlide : 0) + 1;
+            $pagination.text(i + " of " + slick.slideCount);
+        });
+
+        // Pause video on the slide you are leaving
+        $carousel.on("beforeChange", function (event, slick, currentSlide, nextSlide) {
+            const currentVideo = $(slick.$slides[currentSlide]).find("video").get(0);
+            if (currentVideo) {
+                currentVideo.pause();
+            }
+        });
+
+        // Play video on the slide you are entering
+        $carousel.on("afterChange", function (event, slick, currentSlide) {
+            const currentVideo = $(slick.$slides[currentSlide]).find("video").get(0);
+            if (currentVideo) {
+                currentVideo.play();
+            }
+        });
+
+        let settings = {
+            dots: true,
+            arrows: true,
+            rtl: isRTL,
+            appendDots: $dots,
+            dotsClass: "custom-dots",
+            prevArrow: $prev,
+            nextArrow: $next,
+            infinite: false,
+        };
+
+        return settings;
+    };
+
+    /**
+     * Document ready handler.
+     *
+     * @private
+     */
+    function onDocumentReady() {
+        initCarousel();
+    }
+
+    document.readyState !== "loading" ? onDocumentReady() : document.addEventListener("DOMContentLoaded", onDocumentReady);
+})();

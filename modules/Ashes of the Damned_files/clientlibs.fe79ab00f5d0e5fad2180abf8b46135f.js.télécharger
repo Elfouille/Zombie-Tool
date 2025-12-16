@@ -1,0 +1,40 @@
+
+
+var ATVI = ATVI || {};
+
+(function($, ATVI) {
+
+    var init = function() {
+
+        //Add CA privacy links
+        var $privacyLinksContainer = $("footer .legal-links ul");
+    
+        ATVI.utils.addPrivacyLinks($privacyLinksContainer);
+
+    };
+
+    $(init);
+
+})(jQuery, ATVI);
+(function() {
+
+    var init = function() {
+
+        console.log("Init onetrust fix");
+
+        //Make sure overflow hidden is removed from body tag when onetrust closes
+        $(document).on("click", ".ot-close-icon", function () {
+
+            console.log("Close onetrust");
+
+            setTimeout(function() {
+                $('body').css('overflow', '');
+            }, 500);
+
+        });
+
+    };
+
+    $(window).on("load", init);
+
+})();

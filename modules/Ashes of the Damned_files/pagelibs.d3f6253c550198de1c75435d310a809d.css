@@ -1,0 +1,1369 @@
+@font-face {
+  font-family: 'Hitmarker Text VF';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-VF.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-VF.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-VF.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker VF';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/Hitmarker-VF.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/Hitmarker-VF.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/Hitmarker-VF.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Text Regular';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-Regular.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-Regular.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Text Italic';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-Italic.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-Italic.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Text Medium';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-Medium.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-Medium.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Text Bold';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-Bold.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-Bold.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerText-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Condensed Regular';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Regular.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Regular.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Condensed Light';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Light.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Light.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Condensed Medium';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Medium.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Medium.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Condensed Bold';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Bold.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Bold.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Condensed Black';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Black.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Black.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerCondensed-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Normal Regular';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Regular.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Regular.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Normal Light';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Light.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Light.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Normal Medium';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Medium.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Medium.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Normal Bold';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Bold.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Bold.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Normal Black';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Black.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Black.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerNormal-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Wide Regular';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Regular.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Regular.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Wide Light';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Light.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Light.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Wide Medium';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Medium.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Medium.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Wide Bold';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Bold.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Bold.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hitmarker Wide Black';
+  src: url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Black.woff2') format('woff2'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Black.woff') format('woff'), url('../../../global/clientlibs/clientlib-site/resources/fonts/Hitmarker/HitmarkerWide-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/**
+    Call of Duty Global Site Styles
+   /apps/atvi/callofduty/global/clientlibs/clientlib-site/css/site.less
+
+**/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
+  text-rendering: optimizeLegibility;
+  font-display: swap;
+  font-family: "Hitmarker Text Regular", Arial;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+body code {
+  font-family: monospace;
+  background: #f4f5f6;
+  border-radius: 0.4rem;
+  font-size: 86%;
+  margin: 0 0.2rem;
+  padding: 0.2rem 0.5rem;
+  white-space: nowrap;
+}
+
+@keyframes ping-pulse {
+  /*0% {
+		box-shadow:
+            0 0 0 4px #393939,
+            0 0 0 4px rgba(255, 255, 255, 0.8);
+	}
+
+	20% {
+		box-shadow:
+            0 0 0 4px #393939,
+            0 0 0 6px rgba(255, 255, 255, 0.7);
+	}
+
+	70% {
+		box-shadow: 
+            0 0 0 4px #393939,
+            0 0 0 10px rgba(255, 255, 255, 0);
+	}
+
+	100% {
+		box-shadow: 
+            0 0 0 4px #393939, 
+            0 0 0 4px rgba(255, 255, 255, 0);
+	}*/
+  0% {
+    box-shadow: 0 0 0 4px #393939, 0 0 0 4px rgba(215, 0, 0, 0.8);
+  }
+  20% {
+    box-shadow: 0 0 0 4px #393939, 0 0 0 6px rgba(215, 0, 0, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 4px #393939, 0 0 0 10px rgba(215, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 4px #393939, 0 0 0 4px rgba(215, 0, 0, 0);
+  }
+}
+@keyframes ping-start {
+  from {
+    outline-offset: 0;
+    outline: 0 solid transparent;
+  }
+  to {
+    outline-offset: 4px;
+    outline: 2px solid #D70000;
+  }
+}
+@keyframes ping-delay {
+  from {
+    outline-offset: 4px;
+    outline: 1px solid #D70000;
+  }
+  to {
+    outline-offset: 4px;
+    outline: 1px solid #D70000;
+  }
+}
+@keyframes ping-end {
+  from {
+    outline-offset: 4px;
+    outline: 1px solid #D70000;
+  }
+  to {
+    outline-offset: 0;
+    outline: 0 solid transparent;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css?family=Arvo|Electrolize|Montserrat|Open+Sans|Open+Sans+Condensed:300');
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:700,800,900');
+/*********
+MIXINS
+*********/
+/**********
+END MIXINS
+***********/
+html.aem-AuthorLayer-Edit .cod-header-container,
+html.aem-AuthorLayer-structure .cod-header-container {
+  position: relative;
+}
+#cdo-bar {
+  display: none !important;
+}
+body .sso-bar-spacer {
+  display: none !important;
+}
+body.with-sso-bar {
+  margin-top: 0!important;
+}
+body.sso-logged-in .logged-out {
+  display: none;
+}
+body.sso-logged-in .logged-in {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+body .logged-out {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+body .logged-in {
+  display: none;
+}
+.cod-header-container {
+  position: fixed;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #969696;
+  background: #000;
+  font-family: 'Montserrat', Arial, sans-serif;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  text-shadow: 0px 0px .5px white;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  transition: 0.5s all;
+  /***********************
+	START GLOBAL NAV STYLES
+	***********************/
+  /***********************
+	END GLOBAL NAV STYLES
+	***********************/
+  /***********************
+    START DESKTOP HEADER
+    ***********************/
+  /***********************
+    END DESKTOP HEADER
+    ***********************/
+  /***********************
+    START GLOBAL HEADER
+    ***********************/
+  /***********************
+    END GLOBAL HEADER
+    ***********************/
+  /***********************
+    START GAME HEADER
+    ***********************/
+  /***********************
+    END GAME HEADER
+    ***********************/
+  /***********************
+    END DESKTOP HEADER
+    ***********************/
+  /***********************
+    START MOBILE HEADER
+    ***********************/
+  /***********************
+    END MOBILE HEADER
+    ***********************/
+}
+.cod-header-container.g-collapse {
+  top: -50px;
+}
+.cod-header-container.g-collapse .cod-global-header .cod-global-header-right .cod-purchase {
+  top: 50px;
+}
+.cod-header-container p,
+.cod-header-container a {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.cod-header-container a {
+  color: #969696;
+  text-decoration: none;
+  display: block;
+  -webkit-transition: 0.5s color;
+  -moz-transition: 0.5s color;
+  -ms-transition: 0.5s color;
+  -o-transition: 0.5s color;
+  transition: 0.5s color;
+}
+.cod-header-container a:hover {
+  color: #FFF;
+}
+.cod-header-container .desktop-header .dd {
+  position: relative;
+}
+.cod-header-container .desktop-header .dd:hover,
+.cod-header-container .desktop-header .dd.active {
+  background: #141414;
+}
+.cod-header-container .desktop-header .dd:hover > ul,
+.cod-header-container .desktop-header .dd.active > ul {
+  display: block;
+}
+.cod-header-container .desktop-header .dd:hover > a,
+.cod-header-container .desktop-header .dd.active > a {
+  background-color: #ffffff10;
+}
+.cod-header-container .desktop-header .dd:hover > a img,
+.cod-header-container .desktop-header .dd.active > a img {
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+}
+.cod-header-container .desktop-header .dd > ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  width: 265px;
+}
+.cod-header-container .desktop-header .dd > ul > li a {
+  background: #222;
+  padding: 19px 35px;
+  display: block;
+  position: relative;
+}
+.cod-header-container .desktop-header .dd > ul > li a .border2 {
+  margin: -16px 0 0 -35px;
+  content: "";
+  height: 50px;
+  background-color: #fff0;
+  display: block;
+  -webkit-transition: 0.15s all;
+  -moz-transition: 0.15s all;
+  -ms-transition: 0.15s all;
+  -o-transition: 0.15s all;
+  transition: 0.15s all;
+  border: 0px solid #fff0;
+  position: absolute;
+}
+.cod-header-container .desktop-header .dd > ul > li a p:before,
+.cod-header-container .desktop-header .dd > ul > li a p:after {
+  content: "|";
+  margin-top: -1px;
+  -webkit-transform: translate(0px, 0px);
+  -moz-transform: translate(0px, 0px);
+  -ms-transform: translate(0px, 0px);
+  -o-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+  opacity: 0;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  position: absolute;
+}
+.cod-header-container .desktop-header .dd > ul > li a p:before {
+  content: "|";
+  margin-right: 10px;
+}
+.cod-header-container .desktop-header .dd > ul > li a p:after {
+  content: "|";
+  margin-left: -8px;
+}
+.cod-header-container .desktop-header .dd > ul > li:hover a {
+  background: #141414;
+  text-shadow: 0px 0px 18px #c8c8c8;
+}
+.cod-header-container .desktop-header .dd > ul > li:hover a .border2 {
+  background-color: #ffffff10;
+  border: 0px solid #ffffff10;
+}
+.cod-header-container .desktop-header .dd > ul > li:hover a p:before {
+  -webkit-transform: translate(-15px, 0);
+  -moz-transform: translate(-15px, 0);
+  -ms-transform: translate(-15px, 0);
+  -o-transform: translate(-15px, 0);
+  transform: translate(-15px, 0);
+  opacity: .5;
+}
+.cod-header-container .desktop-header .dd > ul > li:hover a p:after {
+  -webkit-transform: translate(15px, 0);
+  -moz-transform: translate(15px, 0);
+  -ms-transform: translate(15px, 0);
+  -o-transform: translate(15px, 0);
+  transform: translate(15px, 0);
+  opacity: .5;
+}
+.cod-header-container .cod-global-header {
+  background-color: #000000;
+  background-image: url(../../../../../../content/dam/atvi/callofduty/global/global-nav/global-nav-bg.png);
+  background-size: 2px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  display: -webkit-box;
+  display: flex;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 50px;
+  position: relative;
+  z-index: 5;
+}
+.cod-header-container .cod-global-header .cod-global-header-left {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  height: 50px;
+}
+.cod-header-container .cod-global-header .cod-global-header-left .logo {
+  position: relative;
+}
+.cod-header-container .cod-global-header .cod-global-header-left .logo a {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  padding: 0 10px;
+  height: 100%;
+  background: transparent;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.cod-header-container .cod-global-header .cod-global-header-left .logo a:hover {
+  background: #000;
+}
+.cod-header-container .cod-global-header .cod-global-header-left .logo img {
+  width: 105px;
+  display: block;
+}
+.cod-header-container .cod-global-header .cod-global-header-left .cod-global-nav > ul {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  height: 100%;
+}
+.cod-header-container .cod-global-header .cod-global-header-left .cod-global-nav > ul > li > a {
+  padding: 18px 15px;
+  display: block;
+  background-color: transparent;
+}
+.cod-header-container .cod-global-header .cod-global-header-left .cod-global-nav > ul > li > a img {
+  width: 11px;
+  height: 9px;
+  margin-left: 10px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.cod-header-container .cod-global-header .cod-global-header-left .cod-global-nav > ul > li > a:hover {
+  color: #71af3a;
+}
+.cod-header-container .cod-global-header .cod-global-header-left .cod-global-nav > ul > li > a img {
+  display: inline;
+}
+.cod-header-container .cod-global-header .cod-global-header-right {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .cod-login .logged-in .account-name {
+  position: relative;
+  cursor: pointer;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  transition: 0.5s all;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-right: 15px;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .cod-login .logged-in .account-name .account-icon {
+  position: relative;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  letter-spacing: 0;
+  background: url(../../../../../../content/dam/atvi/callofduty/global/global-nav/profile_icon.png) center center no-repeat;
+  background-size: 20px;
+  opacity: .5;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  width: 46px;
+  height: 50px;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .cod-login .logged-in .account-name .username {
+  margin-right: 10px;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .cod-login .logged-in .account-name img {
+  width: 11px;
+  height: 9px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .cod-login .logged-in ul {
+  display: none;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .cod-login .logged-in:hover .account-name {
+  background: #000;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .cod-login .logged-in:hover .account-name .account-icon {
+  opacity: 1;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .cod-login .logged-in:hover .account-name img {
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+}
+.cod-header-container .cod-global-header .cod-global-header-right .cod-login .logged-in:hover ul {
+  display: block;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .cod-login .logged-out {
+  padding: 19px 15px;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .cod-login .logged-out a {
+  margin: 0 5px;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .mycod-btn a {
+  position: relative;
+  padding: 19px 15px 19px 45px;
+  background: transparent;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .mycod-btn a:before {
+  content: "";
+  width: 20px;
+  height: 18px;
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  background: url(../../../../../../content/dam/atvi/callofduty/global/global-nav/shield_icon_no_drop.png) center center no-repeat;
+  background-size: contain;
+  opacity: .5;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .mycod-btn:hover a {
+  background: #000;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .cod-purchase {
+  position: relative;
+  top: 0;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  transition: 0.5s all;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.cod-header-container .cod-global-header .cod-global-header-right .cod-purchase a {
+  /* Default styles */
+  color: #FFF;
+  /*padding: 11px 15px 8px;
+    				width: auto;
+                    white-space: nowrap;*/
+}
+.cod-header-container .cod-game-header {
+  background: #000;
+}
+.cod-header-container .cod-game-header .cod-game-header-left {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  height: 50px;
+}
+.cod-header-container .cod-game-header .cod-game-header-left .logo {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-left: 10px;
+  width: 114px;
+}
+.cod-header-container .cod-game-header .cod-game-header-left .logo a img {
+  height: 20px;
+}
+.cod-header-container .cod-game-header .cod-game-header-left .cod-game-nav > ul {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  height: 100%;
+}
+.cod-header-container .cod-game-header .cod-game-header-left .cod-game-nav > ul > li > a {
+  padding: 18px 15px;
+  display: block;
+  background-color: transparent;
+}
+.cod-header-container .cod-game-header .cod-game-header-left .cod-game-nav > ul > li > a img {
+  width: 11px;
+  height: 9px;
+  margin-left: 10px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.cod-header-container .cod-game-header .cod-game-header-left .cod-game-nav > ul > li > a img {
+  display: inline;
+}
+.cod-header-container .mobile-header {
+  display: none;
+  position: relative;
+}
+.cod-header-container .mobile-header a {
+  font-size: 15px !important;
+}
+.cod-header-container .mobile-header li.dd {
+  cursor: pointer;
+}
+.cod-header-container .mobile-header li.dd img {
+  width: 11px;
+  height: 9px;
+  margin-left: 10px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: pointer;
+  float: right;
+}
+.cod-header-container .mobile-header li.dd > ul {
+  position: relative;
+  display: none;
+}
+.cod-header-container .mobile-header li.dd > ul a {
+  padding: 25px 25px 25px 50px;
+}
+.cod-header-container .mobile-header li.dd.active > ul {
+  display: block;
+}
+.cod-header-container .mobile-header li.dd.active > a {
+  color: #FFF;
+}
+.cod-header-container .mobile-header li.dd.active > a img {
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+}
+.cod-header-container .mobile-header .mobile-top-nav {
+  height: 50px;
+  background: #000;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  display: -webkit-box;
+  display: flex;
+  justify-content: space-between;
+}
+.cod-header-container .mobile-header .mobile-top-nav .logo {
+  margin-left: 15px;
+}
+.cod-header-container .mobile-header .mobile-top-nav .logo a {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+}
+.cod-header-container .mobile-header .mobile-top-nav .logo a img {
+  height: 20px;
+}
+.cod-header-container .mobile-header .mobile-top-nav .cod-purchase a {
+  /* Default styles */
+  padding: 19px 15px;
+  color: #FFF;
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  white-space: nowrap;
+}
+@media screen and (max-width: 450px) {
+  .cod-header-container .mobile-header .mobile-top-nav .cod-purchase a {
+    font-size: 12px;
+  }
+}
+.cod-header-container .mobile-header .mobile-top-nav .mobile-burger {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  cursor: pointer;
+  top: 3px;
+  right: 4px;
+  background: none;
+  border: none;
+}
+.cod-header-container .mobile-header .mobile-top-nav .mobile-burger .bar {
+  width: 30px;
+  height: 1px;
+  display: block;
+  position: relative;
+  background-color: #FFF;
+}
+.cod-header-container .mobile-header .mobile-top-nav .mobile-burger .bar.one {
+  position: absolute;
+  top: 10px;
+}
+.cod-header-container .mobile-header .mobile-top-nav .mobile-burger .bar.two {
+  position: absolute;
+  top: 20px;
+  transition: 0.3s ease .6s;
+  animation: fade 2s;
+}
+.cod-header-container .mobile-header .mobile-top-nav .mobile-burger .bar.three {
+  position: absolute;
+  top: 30px;
+}
+.cod-header-container .mobile-header .mobile-top-nav .mobile-burger.active .bar.two {
+  opacity: 0;
+  transition: .3s ease;
+}
+.cod-header-container .mobile-header .mobile-top-nav .mobile-burger.anim .bar.one {
+  top: 10px;
+  position: absolute;
+  transition: top .3s ease .6s;
+  animation: turnthree 1s 0s;
+  animation-fill-mode: forwards;
+}
+.cod-header-container .mobile-header .mobile-top-nav .mobile-burger.anim .bar.three {
+  top: 30px;
+  position: absolute;
+  transition: top .3s ease .6s;
+  animation: turnfour 1s 0s;
+  animation-fill-mode: forwards;
+}
+.cod-header-container .mobile-header .mobile-top-nav .mobile-burger.anim.active .bar.one {
+  top: 20px;
+  transition: top 0.3s ease .1s;
+  animation: turn 1s .3s;
+  animation-fill-mode: forwards;
+}
+.cod-header-container .mobile-header .mobile-top-nav .mobile-burger.anim.active .bar.three {
+  top: 20px;
+  transition: top 0.3s ease .1s;
+  animation: turntwo 1s .3s;
+  animation-fill-mode: forwards;
+}
+.cod-header-container .mobile-header .mobile-panel {
+  position: fixed;
+  width: 100%;
+  top: 50px;
+  left: 0;
+  right: 0;
+  height: 0;
+  overflow: hidden;
+  background-image: url(../../../../../../content/dam/atvi/callofduty/global/global-nav/global-nav-bg-mobile.png);
+  background-size: 2px;
+  background-color: #000;
+  -webkit-transition: height 1s;
+  -moz-transition: height 1s;
+  -ms-transition: height 1s;
+  -o-transition: height 1s;
+  transition: height 1s;
+}
+.cod-header-container .mobile-header .mobile-panel .mobile-inner-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+.cod-header-container .mobile-header .mobile-panel .mobile-game-nav {
+  background: #000;
+}
+.cod-header-container .mobile-header .mobile-panel .mobile-game-nav > ul > li > a {
+  padding: 25px;
+}
+.cod-header-container .mobile-header .mobile-panel .mobile-global-nav > ul > li.cod-logo a {
+  width: 185px;
+  display: block;
+}
+.cod-header-container .mobile-header .mobile-panel .mobile-global-nav > ul > li.cod-logo img {
+  width: 100%;
+}
+.cod-header-container .mobile-header .mobile-panel .mobile-global-nav > ul > li > a {
+  padding: 25px;
+}
+.cod-header-container .mobile-header.active .mobile-panel {
+  height: calc(100% - 50px);
+}
+@media screen and (max-width: 1200px) {
+  .cod-header-container .desktop-header {
+    display: none;
+  }
+  .cod-header-container .mobile-header {
+    display: block;
+  }
+}
+html[dir='rtl'] .cod-header-container .mobile-header .mobile-top-nav .mobile-burger {
+  right: unset;
+}
+html[dir='rtl'] .cod-header-container .mobile-header .mobile-top-nav .logo {
+  margin-left: unset;
+  margin-right: 15px;
+}
+@keyframes turn {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
+@keyframes turnthree {
+  0% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes turntwo {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+}
+@keyframes turnfour {
+  0% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
+[data-simplebar] {
+  position: relative;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+.simplebar-wrapper {
+  overflow: hidden;
+  width: inherit;
+  height: inherit;
+  max-width: inherit;
+  max-height: inherit;
+}
+
+.simplebar-mask {
+  direction: inherit;
+  position: absolute;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: auto !important;
+  height: auto !important;
+  z-index: 0;
+}
+
+.simplebar-offset {
+  direction: inherit !important;
+  box-sizing: inherit !important;
+  resize: none !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.simplebar-content-wrapper {
+  direction: inherit;
+  box-sizing: border-box !important;
+  position: relative;
+  display: block;
+  height: 100%; /* Required for horizontal native scrollbar to not appear if parent is taller than natural height */
+  width: auto;
+  max-width: 100%; /* Not required for horizontal scroll to trigger */
+  max-height: 100%; /* Needed for vertical scroll to trigger */
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.simplebar-content-wrapper::-webkit-scrollbar,
+.simplebar-hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.simplebar-content:before,
+.simplebar-content:after {
+  content: ' ';
+  display: table;
+}
+
+.simplebar-placeholder {
+  max-height: 100%;
+  max-width: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.simplebar-height-auto-observer-wrapper {
+  box-sizing: inherit !important;
+  height: 100%;
+  width: 100%;
+  max-width: 1px;
+  position: relative;
+  float: left;
+  max-height: 1px;
+  overflow: hidden;
+  z-index: -1;
+  padding: 0;
+  margin: 0;
+  pointer-events: none;
+  flex-grow: inherit;
+  flex-shrink: 0;
+  flex-basis: 0;
+}
+
+.simplebar-height-auto-observer {
+  box-sizing: inherit;
+  display: block;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1000%;
+  width: 1000%;
+  min-height: 1px;
+  min-width: 1px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.simplebar-track {
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+[data-simplebar].simplebar-dragging {
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+[data-simplebar].simplebar-dragging .simplebar-content {
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+[data-simplebar].simplebar-dragging .simplebar-track {
+  pointer-events: all;
+}
+
+.simplebar-scrollbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  min-height: 10px;
+}
+
+.simplebar-scrollbar:before {
+  position: absolute;
+  content: '';
+  background: black;
+  border-radius: 7px;
+  left: 2px;
+  right: 2px;
+  opacity: 0;
+  transition: opacity 0.2s 0.5s linear;
+}
+
+.simplebar-scrollbar.simplebar-visible:before {
+  opacity: 0.5;
+  transition-delay: 0s;
+  transition-duration: 0s;
+}
+
+.simplebar-track.simplebar-vertical {
+  top: 0;
+  width: 11px;
+}
+
+.simplebar-scrollbar:before {
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  right: 2px;
+}
+
+.simplebar-track.simplebar-horizontal {
+  left: 0;
+  height: 11px;
+}
+
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar {
+  right: auto;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  min-height: 0;
+  min-width: 10px;
+  width: auto;
+}
+
+/* Rtl support */
+[data-simplebar-direction='rtl'] .simplebar-track.simplebar-vertical {
+  right: auto;
+  left: 0;
+}
+
+.simplebar-dummy-scrollbar-size {
+  direction: rtl;
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  height: 500px;
+  width: 500px;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -ms-overflow-style: scrollbar !important;
+}
+
+.simplebar-dummy-scrollbar-size > div {
+  width: 200%;
+  height: 200%;
+  margin: 10px 0;
+}
+
+.simplebar-hide-scrollbar {
+  position: fixed;
+  left: 0;
+  visibility: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+/**
+	CALLOUT STYLES - /apps/atvi/callofduty/strategy-guide/components/maps/map-icon-text/clientlibs/css/style.less
+*/
+.icon-text-component {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+.icon-text-component[data-type="default"] .icon {
+  width: 60px;
+}
+.icon-text-component[data-type="callout"] .icon {
+  width: 24px;
+  height: 24px;
+}
+.icon-text-component[data-type="callout"] .text-container {
+  font-family: "Hitmarker Text Regular";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+/**
+	COD ARTICLE RTE SPAN STYLES - /apps/atvi/callofduty/strategy-guide/components/maps/map-rich-text/clientlibs/css/styles.less
+*/
+body {
+  background: #23272a;
+  color: #f3f4f5;
+}
+h1 {
+  font-family: "Hitmarker Condensed Black", Arial;
+  font-weight: 900;
+  font-style: normal;
+  letter-spacing: 1px;
+  font-size: 3.25rem;
+  line-height: 3.25rem;
+}
+h2,
+h3 {
+  font-family: "Hitmarker Condensed Black", Arial;
+  font-weight: 900;
+  font-style: normal;
+  letter-spacing: 1px;
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+}
+h4,
+h5,
+h6 {
+  font-family: "Hitmarker Condensed Black", Arial;
+  font-weight: 900;
+  font-style: normal;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+p {
+  font-family: "Hitmarker Text Regular", Arial;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 1px;
+  font-size: 0.88rem;
+  line-height: 1.38rem;
+}
+a {
+  color: inherit;
+}
+.map-rich-text-component {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+.map-rich-text-component h1,
+.map-rich-text-component h2,
+.map-rich-text-component h3,
+.map-rich-text-component h4,
+.map-rich-text-component h5,
+.map-rich-text-component h6,
+.map-rich-text-component p {
+  width: 100%;
+}
+.map-rich-text-component hr {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(270deg, rgba(217, 217, 217, 0) 0%, #d9d9d9 49.48%, rgba(217, 217, 217, 0) 100%);
+  border: none;
+}
+.map-rich-text-component span.strikethrough {
+  text-decoration: line-through;
+}
+.map-rich-text-component span.bannerLabel {
+  font-family: "Hitmarker Condensed Black", Arial;
+  font-weight: 900;
+  font-style: normal;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  line-height: 1rem;
+  position: relative;
+  display: inline-block;
+  background: var(--custom-accent-color, var(--default-accent-color));
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  margin-inline-start: 8px;
+  padding: 4px 16px 5px;
+  width: calc(100% - 8px);
+}
+.map-rich-text-component span.bannerLabel a {
+  text-decoration: none;
+}
+.map-rich-text-component span.bannerLabel:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 4px;
+  top: 0;
+  left: -8px;
+  background-color: var(--custom-accent-color, var(--default-accent-color));
+}
+.map-rich-text-component.text-black span.bannerLabel {
+  color: black;
+  text-shadow: unset;
+}
+

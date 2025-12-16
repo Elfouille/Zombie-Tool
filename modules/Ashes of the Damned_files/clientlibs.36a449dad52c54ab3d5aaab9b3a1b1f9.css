@@ -1,0 +1,1106 @@
+/* https://cdn.rawgit.com/ardhi/Leaflet.MousePosition/master/src/L.Control.MousePosition.css */
+.leaflet-container .leaflet-control-mouseposition {
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 5px #bbb;
+  padding: 0 5px;
+  margin:0;
+  color: #333;
+  font: 11px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+
+:root {
+  --reader-drawer-width: 640px;
+  --reader-drawer-fluid-width: calc(50vw + 48px);
+  --breakpoint-mobile: 768px;
+  --breakpoint-tablet: 1024px;
+}
+.map-menu__marker-menu {
+  --track-size: 33px;
+  --thumb-size: 12px;
+  --thumb: hsl(210, 9%, 87%);
+  --thumb-color: #dadde0;
+  --thumb-transition-duration: 0.3s;
+  --thumb-position: 0%;
+  --highlight-size: 2px;
+  --isLTR: 1;
+}
+.map-page .sr-only:not(:focus):not(:active) {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+.map-page .icon-btn {
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.1;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+@media screen and (-ms-high-contrast: active) {
+  .map-page .icon-btn {
+    border: 2px solid currentcolor;
+  }
+}
+.map-page .expand-btn svg {
+  fill: white;
+}
+.map-page .expand-btn svg.expand-icon {
+  display: block;
+}
+.map-page .expand-btn svg.collapse-icon {
+  display: none;
+}
+.map-page .expand-btn[aria-expanded="true"] .expand-icon {
+  display: none;
+}
+.map-page .expand-btn[aria-expanded="true"] .collapse-icon {
+  display: block;
+}
+.map-page .color-marker svg.icon {
+  transform: translate(5px, 5px);
+}
+.map-page .guide-content > div.aem-Grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  overflow-x: hidden;
+  overflow-y: auto;
+  gap: 20px;
+}
+.map-page .guide-content > div.aem-Grid > .map-data {
+  display: none;
+}
+.map-page .marker-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  width: 100%;
+  padding: 20px;
+  /* Tooltip styling */
+}
+.map-page .marker-content .tooltip {
+  position: absolute;
+  top: -16px;
+  right: 0;
+  background-color: #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+.map-page .marker-content .tooltip.show {
+  opacity: 1;
+}
+.map-page .marker-content .simplebar-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+.map-page .marker-content .simplebar-content::after,
+.map-page .marker-content .simplebar-content::before {
+  display: none;
+}
+.map-page .marker-content .marker-content-header,
+.map-page .marker-content .marker-content-body {
+  padding-inline: 40px;
+}
+.map-page .marker-content .marker-content-header {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) calc(24px * 2 + 8px);
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.map-page .marker-content .marker-content-header .marker-icon {
+  overflow: hidden;
+  height: 24px;
+  width: 24px;
+}
+.map-page .marker-content .marker-content-header__text {
+  width: 100%;
+}
+.map-page .marker-content .marker-content-header__title {
+  font-family: "Hitmarker Text Regular", Arial;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 1px;
+  font-size: 0.88rem;
+  line-height: 1.38rem;
+  line-height: 1;
+  color: #fff;
+}
+.map-page .marker-content .marker-content-header__subtitle {
+  font-family: "Hitmarker Text Regular", Arial;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 1px;
+  font-size: 0.63rem;
+  line-height: 1.13rem;
+  line-height: 1;
+  color: #919aa2;
+}
+.map-page .marker-content .marker-content-header__actions {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+.map-page .marker-content .marker-content-header__actions .icon-btn {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+.map-page .marker-content .marker-content-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.map-page .marker-content .marker-content-body > div > .map-data {
+  display: none;
+}
+.map-page .marker-content .marker-content-body > div > .map-media-carousel,
+.map-page .marker-content .marker-content-body > div > .map-rich-text,
+.map-page .marker-content .marker-content-body > div > .map-icon-text {
+  padding-inline: 40px;
+}
+.map-page .map-menu__marker-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: auto;
+  padding: 16px 12px;
+  background: #23272a;
+}
+.map-page .map-menu__marker-menu .marker-menu__header {
+  display: grid;
+  gap: 12px;
+}
+.map-page .map-menu__marker-menu .marker-menu__text-btn {
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.1;
+  font-family: "Hitmarker Text Bold";
+  font-weight: 700;
+  font-style: normal;
+  font-size: 0.75rem;
+  line-height: 0.88rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: grid;
+  place-items: center;
+  height: 24px;
+  padding: 0 12px;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #f3f4f5;
+  color: #f3f4f5;
+  text-wrap: nowrap;
+  overflow: hidden;
+}
+@media screen and (-ms-high-contrast: active) {
+  .map-page .map-menu__marker-menu .marker-menu__text-btn {
+    border: 2px solid currentcolor;
+  }
+}
+.map-page .map-menu__marker-menu hr {
+  width: 100%;
+  height: 1px;
+  background: #606971;
+}
+.map-page .map-menu__marker-menu .marker-menu__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-x: hidden;
+}
+.map-page .map-menu__marker-menu .category-list,
+.map-page .map-menu__marker-menu .subcategory-list,
+.map-page .map-menu__marker-menu .layer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+}
+.map-page .map-menu__marker-menu .subcategory-list {
+  margin-top: 8px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 200ms ease-out;
+}
+.map-page .map-menu__marker-menu .subcategory-list[hidden] {
+  display: none;
+}
+.map-page .map-menu__marker-menu .category-item .expand-btn > svg {
+  width: 16px;
+  height: 16px;
+}
+.map-page .map-menu__marker-menu .category-item.active .category-icon {
+  background-color: #f96800;
+}
+.map-page .map-menu__marker-menu .subcategory-item.active .subcategory-icon {
+  background-color: #f96800;
+}
+.map-page .map-menu__marker-menu .category-row,
+.map-page .map-menu__marker-menu .subcategory-row {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) 33px;
+  gap: 16px;
+  align-items: center;
+}
+.map-page .map-menu__marker-menu .category-row p,
+.map-page .map-menu__marker-menu .subcategory-row p {
+  display: flex;
+  align-items: center;
+}
+.map-page .map-menu__marker-menu .category-row .switch-label,
+.map-page .map-menu__marker-menu .subcategory-row .switch-label {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 16px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.map-page .map-menu__marker-menu .category-row .switch-label:dir(rtl),
+.map-page .map-menu__marker-menu .subcategory-row .switch-label:dir(rtl) {
+  --isLTR: -1;
+}
+.map-page .map-menu__marker-menu .category-row > input,
+.map-page .map-menu__marker-menu .subcategory-row > input {
+  display: grid;
+  grid: [track] 1fr / [track] 1fr;
+  align-items: center;
+  position: relative;
+  width: var(--track-size);
+  height: 20px;
+  margin: 0;
+  padding: 2px;
+  border: 1px solid #606971;
+  border-radius: var(--track-size);
+  outline-offset: 5px;
+  background: transparent;
+  transition: background-color var(--thumb-transition-duration) ease;
+  appearance: none;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.35) inset, 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.map-page .map-menu__marker-menu .category-row > input::before,
+.map-page .map-menu__marker-menu .subcategory-row > input::before {
+  height: 12px;
+  width: 12px;
+  content: "";
+  grid-area: track;
+  inline-size: var(--thumb-size);
+  block-size: var(--thumb-size);
+  background: var(--thumb-color);
+  border-radius: 50%;
+  transform: translateX(var(--thumb-position));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .map-page .map-menu__marker-menu .category-row > input::before,
+  .map-page .map-menu__marker-menu .subcategory-row > input::before {
+    transition: transform var(--thumb-transition-duration) ease, box-shadow 0.25s ease;
+  }
+}
+.map-page .map-menu__marker-menu .category-row > input:checked,
+.map-page .map-menu__marker-menu .subcategory-row > input:checked {
+  --thumb-position: calc((var(--track-size) - var(--thumb-size)/2 - 100%) * var(--isLTR));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 3.7%, transparent 96.3%), hsl(25 100% 49%);
+}
+.map-page .map-menu__marker-menu .category-row > input:disabled,
+.map-page .map-menu__marker-menu .subcategory-row > input:disabled {
+  cursor: not-allowed;
+  filter: grayscale(1);
+  --thumb-color: transparent;
+}
+.map-page .map-menu__marker-menu .category-row > input:disabled::before,
+.map-page .map-menu__marker-menu .subcategory-row > input:disabled::before {
+  cursor: not-allowed;
+  box-shadow: inset 0 0 0 2px hsl(0 0% 100% / 50%);
+}
+@media (prefers-color-scheme: dark) {
+  .map-page .map-menu__marker-menu .category-row > input:disabled::before,
+  .map-page .map-menu__marker-menu .subcategory-row > input:disabled::before {
+    box-shadow: inset 0 0 0 2px hsl(0 0% 0% / 50%);
+  }
+}
+.map-page .map-menu__marker-menu .category-icon,
+.map-page .map-menu__marker-menu .subcategory-icon {
+  display: grid;
+  padding: 4px;
+}
+.map-page .map-menu__marker-menu .category-icon > svg,
+.map-page .map-menu__marker-menu .subcategory-icon > svg {
+  max-height: 100%;
+  max-width: 100%;
+}
+.map-page .map-menu__marker-menu .category-icon {
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  place-self: center;
+}
+.map-page .map-menu__marker-menu .subcategory-icon {
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  place-self: end;
+}
+.map-page .map-menu__marker-menu .category-title,
+.map-page .map-menu__marker-menu .subcategory-title {
+  font-family: "Hitmarker Text Regular";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.88rem;
+  line-height: 1.25rem;
+  letter-spacing: 1px;
+  width: 143px;
+}
+.map-page footer {
+  background: #23272a;
+}
+.map-page footer .footer-locale-selector {
+  display: none;
+}
+@media (max-width: 1024px) and (orientation: landscape) {
+  .map-page .marker-content {
+    gap: 16px;
+  }
+  .map-page .marker-content .marker-content-header,
+  .map-page .marker-content .marker-content-body {
+    padding-inline: 0;
+  }
+  .map-page .leaflet-bottom.leaflet-right {
+    bottom: 72px;
+  }
+  .map-page .leaflet-control-zoom,
+  .map-page .leaflet-control-mouseposition,
+  .map-page .leaflet-control-attribution {
+    display: none;
+  }
+  .map-page .leaflet-control-attribution {
+    writing-mode: sideways-lr;
+  }
+}
+@media (max-width: 768px) {
+  .map-page .marker-content {
+    gap: 16px;
+  }
+  .map-page .marker-content .marker-content-header,
+  .map-page .marker-content .marker-content-body {
+    padding-inline: 0;
+  }
+  .map-page .leaflet-bottom.leaflet-right {
+    bottom: 72px;
+  }
+  .map-page .leaflet-control-zoom,
+  .map-page .leaflet-control-mouseposition,
+  .map-page .leaflet-control-attribution {
+    display: none;
+  }
+  .map-page .leaflet-control-attribution {
+    writing-mode: sideways-lr;
+  }
+}
+
+.map-page #cod-single-header {
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  pointer-events: auto;
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+  -webkit-transition: unset;
+  -moz-transition: unset;
+  -ms-transition: unset;
+  -o-transition: unset;
+  transition: unset;
+  transition: all 300ms;
+}
+.map-page #cod-single-header .cod-header_desktop-nav_links {
+  display: none;
+}
+.map-page .map-overlay__menu.drawer-open + .map-overlay__nav #cod-single-header {
+  padding-inline: 12px 60px;
+  width: calc(100% - min(var(--reader-drawer-width), var(--reader-drawer-fluid-width)));
+  left: min(var(--reader-drawer-width), var(--reader-drawer-fluid-width));
+}
+@media (max-width: 1440px) {
+  .map-page #cod-single-header .cod-header_sso {
+    display: none;
+  }
+  .map-page #cod-single-header .cod-header_mobile-menu .cod-header_mobile-dropdown .cod-header_mobile-sso {
+    display: flex;
+  }
+}
+@media (max-width: 1024px) {
+  .map-page #cod-single-header .cod-header_sso,
+  .map-page #cod-single-header .cod-header_cta {
+    display: none;
+  }
+}
+@media (max-width: 1024px) and (orientation: landscape) {
+  .map-page .map-overlay__menu.drawer-open + .map-overlay__nav #cod-single-header {
+    width: 100%;
+    left: 0;
+    padding-inline: 12px;
+  }
+  .map-page .map-overlay__menu.drawer-open + .map-overlay__nav #cod-single-header .cod-header_cta {
+    display: block;
+  }
+}
+@media (max-width: 768px) {
+  .map-page .map-overlay__menu.drawer-open + .map-overlay__nav #cod-single-header {
+    width: 100%;
+    left: 0;
+    padding-inline: 12px;
+  }
+  .map-page .map-overlay__menu.drawer-open + .map-overlay__nav #cod-single-header .cod-header_cta {
+    display: block;
+  }
+  .map-page #cod-single-header .cod-header_cta a .cod-header_cta-desktop {
+    display: none;
+  }
+  .map-page #cod-single-header .cod-header_cta a .cod-header_cta-mobile {
+    display: unset;
+  }
+}
+
+.map-rich-text-component {
+  --default-accent-color: transparent;
+  --default-text-accent-color: #fff;
+}
+html,
+body,
+.leaflet-container {
+  background: #000;
+}
+html,
+body,
+body > .root,
+body > .root > div,
+body > .root > div > .map-page {
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+#map {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.map-page {
+  display: grid;
+}
+.map-page > * {
+  grid-area: 1 / 1;
+}
+.map-overlay {
+  width: 100%;
+  height: 100%;
+  z-index: 401;
+  overflow: hidden;
+}
+.grid-label {
+  font-family: "Hitmarker Text Regular";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.63rem;
+  line-height: 0.88rem;
+  letter-spacing: 1px;
+  color: #f3f4f5;
+  padding: 4px;
+  font-size: 12px;
+  opacity: 0.8;
+  /*
+    Color for grid lines and Text:
+Primary Gray 50 - #F3F4F5
+Text should be:
+Hitmarker Text Regular, 10px, 4px margin from Northwest Grid Corner
+*/
+}
+.color-marker:hover {
+  filter: drop-shadow(0 8px 4px rgba(0, 0, 0, 0.5));
+}
+.color-marker:hover svg {
+  transform: scale(1.2);
+  transition: transform 300ms ease-in-out;
+}
+.text-marker {
+  text-align: center;
+  width: auto;
+  height: auto;
+}
+.text-marker span {
+  display: block;
+  width: fit-content;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+.text-marker-primary {
+  font-family: "Hitmarker Text Bold";
+  font-weight: 700;
+  font-style: normal;
+  font-size: 0.88rem;
+  line-height: 1.25rem;
+  letter-spacing: 1px;
+}
+.text-marker-primary span {
+  background-color: black;
+  padding-inline: 5px;
+}
+.text-marker-secondary {
+  font-family: "Hitmarker Text Bold";
+  font-weight: 700;
+  font-style: normal;
+  font-size: 0.63rem;
+  line-height: 0.88rem;
+  letter-spacing: 1px;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #000;
+}
+.text-marker:hover span {
+  transform: translate(-50%, -50%) scale(1.2);
+  transition: transform 300ms ease-in-out;
+  filter: drop-shadow(0 8px 4px rgba(0, 0, 0, 0.5));
+}
+#map .leaflet-control-zoom {
+  margin-top: 68px;
+  margin-right: 0px;
+  border-radius: 8px 0 0 8px;
+  border: 0;
+}
+#map .leaflet-control-zoom a {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: #23272a;
+  background: rgba(27, 27, 27, 0.8);
+  backdrop-filter: blur(10px);
+  color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 12px 12px;
+  border-radius: 0;
+  border-bottom: none;
+}
+#map .leaflet-control-zoom a:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border-radius: 4px;
+  border: 1px solid #f3f4f5;
+}
+#map .leaflet-control-zoom a:first-child {
+  border-top-left-radius: 8px;
+  padding-top: 4px;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1V11" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M1 6L11 6" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>');
+}
+#map .leaflet-control-zoom a:nth-child(2) {
+  border-bottom-left-radius: 8px;
+  padding-bottom: 4px;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="2" viewBox="0 0 12 2" fill="none"><path d="M1 1L11 1" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>');
+}
+
+.map-overlay {
+  pointer-events: none;
+  /* MENU - DRAWER */
+}
+.map-overlay .reader-drawer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: min(var(--reader-drawer-width), var(--reader-drawer-fluid-width));
+  transition: width 300ms ease-out;
+  filter: drop-shadow(0px 0px 4px #000000);
+}
+.map-overlay .reader-drawer__content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  overflow: hidden auto;
+  color: white;
+  background: #23272a;
+  pointer-events: auto;
+}
+.map-overlay .marker-drawer__content,
+.map-overlay .guide-drawer__content {
+  width: inherit;
+  height: 100%;
+  overflow: hidden auto;
+  transition: width 300ms ease-out;
+}
+.map-overlay .reader-drawer__guide-marker-header {
+  display: none;
+  align-items: center;
+  padding: 20px 40px 0px;
+  width: 100%;
+}
+.map-overlay .reader-drawer__guide-marker-header button {
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.1;
+  font-family: "Hitmarker Text Bold";
+  font-weight: 700;
+  font-style: normal;
+  font-size: 0.88rem;
+  line-height: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: white;
+  gap: 8px;
+}
+@media screen and (-ms-high-contrast: active) {
+  .map-overlay .reader-drawer__guide-marker-header button {
+    border: 2px solid currentcolor;
+  }
+}
+.map-overlay .reader-drawer__header-divider {
+  display: none;
+  padding-inline: 40px;
+}
+.map-overlay .reader-drawer__header-divider hr {
+  margin: 0;
+  border: none;
+  height: 1px;
+  background-color: #606971;
+}
+.map-overlay .guide-content {
+  width: min(var(--reader-drawer-width), var(--reader-drawer-fluid-width));
+  padding-inline-end: 48px;
+}
+.map-overlay .guide-content > div.aem-Grid {
+  gap: 36px;
+}
+.map-overlay .guide-content > div.aem-Grid > .map-media-carousel,
+.map-overlay .guide-content > div.aem-Grid > .map-rich-text,
+.map-overlay .guide-content > div.aem-Grid > .map-icon-text {
+  padding-inline: 40px;
+}
+.map-overlay .guide-content .reader-drawer__guide-marker-header {
+  justify-content: end;
+  padding-bottom: 20px;
+}
+.map-overlay .map-menu__marker-menu .marker-menu__header {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 32px;
+}
+.map-overlay .marker-content {
+  width: min(var(--reader-drawer-width), var(--reader-drawer-fluid-width));
+  padding-inline: 0 40px;
+}
+.map-overlay .marker-content .reader-drawer__guide-marker-header {
+  justify-content: start;
+}
+.map-overlay .reader-drawer__side-menu {
+  margin-top: 68px;
+}
+.map-overlay .reader-drawer__toggle-btn {
+  position: relative;
+  border-radius: 0 8px 8px 0;
+  background: inherit;
+  width: 48px;
+  padding: 16px 0;
+  pointer-events: auto;
+  background: #23272a;
+  margin-bottom: 20px;
+}
+.map-overlay .reader-drawer__toggle-btn svg {
+  width: 32px;
+  height: 23px;
+}
+.map-overlay .reader-drawer__toggle-btn:before,
+.map-overlay .reader-drawer__toggle-btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiIGZpbGw9Im5vbmUiPgogIDxwYXRoIGQ9Ik0wIDBDMCA0LjQxODI4IDMuNTgxNzIgOCA4IDhIMFYwWiIgZmlsbD0iIzI0MjcyQSIvPgo8L3N2Zz4=") no-repeat;
+}
+.map-overlay .reader-drawer__toggle-btn:before {
+  top: -8px;
+}
+.map-overlay .reader-drawer__toggle-btn:after {
+  bottom: -8px;
+  transform: scaleY(-1);
+}
+.map-overlay.drawer-collapsed .reader-drawer {
+  width: 0;
+}
+.map-overlay.guide-open .marker-drawer__content {
+  width: 0;
+}
+.map-overlay.marker-open .guide-drawer__content {
+  width: 0;
+}
+.map-overlay.marker-initialized .reader-drawer__guide-marker-header {
+  display: flex;
+}
+.map-overlay.marker-initialized .reader-drawer__header-divider {
+  display: block;
+}
+.map-overlay .map-menu__marker-menu.side-menu {
+  position: absolute;
+  transition: width 300ms ease-out;
+  border-radius: 0 8px 8px 0;
+  overflow: hidden;
+  width: 304px;
+}
+.map-overlay .map-menu__marker-menu.side-menu::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to right, #000000 0%, rgba(0, 0, 0, 0) 100%);
+  filter: blur(4px);
+  pointer-events: none;
+}
+.map-overlay .map-menu__marker-menu.side-menu .marker-menu__btn > svg {
+  width: 32px;
+  height: 19px;
+  fill: white;
+}
+.map-overlay .map-menu__marker-menu.side-menu .marker-menu__body {
+  max-height: calc(100vh - 68px - 55px - 20px - 16px - 24px - 18px - 16px);
+  overflow-y: auto;
+}
+.map-overlay.marker-collapsed .map-menu__marker-menu {
+  width: 48px;
+  padding-inline: 8px;
+}
+.map-overlay.marker-collapsed .marker-menu__header {
+  grid-template-columns: minmax(0, 1fr);
+}
+.map-overlay.marker-collapsed .marker-menu__text-btn {
+  display: none;
+}
+.map-overlay.marker-collapsed .category-row {
+  grid-template-columns: minmax(0, 1fr);
+}
+.map-overlay.marker-collapsed .category-row > .expand-btn,
+.map-overlay.marker-collapsed .category-row > .spacer,
+.map-overlay.marker-collapsed .category-row > .category-title,
+.map-overlay.marker-collapsed .category-row > input,
+.map-overlay.marker-collapsed .category-row > .subcategory-list {
+  display: none;
+}
+@media (max-width: 1024px) and (orientation: landscape) {
+  .map-overlay .map-overlay__menu {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .map-overlay .map-overlay__menu {
+    display: none;
+  }
+}
+
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 400;
+  color: white;
+  /* Bottom Bar */
+  /* Panels */
+  /* Reduced Motion */
+}
+.mobile-drawer .bottom-bar {
+  display: flex;
+  flex-direction: row;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 16px 16px 0 0;
+  background: #23272a;
+}
+.mobile-drawer .bottom-bar button {
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  text-align: center;
+  line-height: 1.1;
+  font-family: "Hitmarker Text Regular";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.63rem;
+  line-height: 0.88rem;
+  letter-spacing: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  flex: 1 0 0;
+  padding: 8px 0;
+  border-radius: 8px;
+  color: inherit;
+}
+@media screen and (-ms-high-contrast: active) {
+  .mobile-drawer .bottom-bar button {
+    border: 2px solid currentcolor;
+  }
+}
+.mobile-drawer .bottom-bar button[aria-selected="true"] {
+  background: #3c4147;
+}
+.mobile-drawer .bottom-bar svg {
+  height: 20px;
+  width: auto;
+}
+.mobile-drawer .panels-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 200ms ease-out;
+}
+.mobile-drawer .panel {
+  width: 100%;
+  background: #23272a;
+  max-height: calc(100vh - 60px - 60px - 72px);
+  overflow-y: auto;
+  padding-bottom: env(safe-area-inset-bottom);
+  /* Handle safe areas (iOS notch devices) */
+}
+.mobile-drawer .guide-content > div.aem-Grid {
+  padding-inline: 20px;
+}
+.mobile-drawer .marker-menu__header {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.mobile-drawer .layer-list .category-row,
+.mobile-drawer .layer-list .subcategory-row {
+  grid-template-columns: minmax(0, 1fr) 33px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-drawer .panels-container {
+    transition: none;
+  }
+}
+@media (max-width: 1024px) and (orientation: landscape) {
+  .mobile-drawer {
+    display: unset;
+  }
+}
+@media (max-width: 768px) {
+  .mobile-drawer {
+    display: unset;
+  }
+}
+/* Modern browsers: dynamic viewport height */
+@supports (height: 100dvh) {
+  .mobile-drawer .panel {
+    max-height: calc(100dvh - 60px - 60px - 72px);
+  }
+}
+
+body.has-dialog {
+  overflow: hidden;
+}
+.map-page .simplebar--scrollable-y {
+  padding-right: 40px;
+  pointer-events: initial;
+}
+.map-page .simplebar--content-wrapper {
+  overscroll-behavior: none;
+}
+.map-page .simplebar-track {
+  pointer-events: initial !important;
+  /* Or auto */
+  background: linear-gradient(90deg, transparent 0% calc(20.5px), #3c4147 calc(20.5px) calc(22.5px), transparent calc(22.5px) 100%);
+}
+.map-page .simplebar-track.simplebar-horizontal {
+  display: none;
+}
+.map-page .simplebar-track.simplebar-vertical {
+  width: 40px;
+  margin-top: 20px;
+}
+.map-page .simplebar-scrollbar {
+  background: linear-gradient(90deg, transparent 0% 20px, #79838d 20px calc(23px), transparent calc(23px) 100%);
+}
+.map-page .simplebar-scrollbar.simplebar-visible:before {
+  display: none;
+}
+.map-page .modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  backdrop-filter: blur(10px);
+}
+.map-page .modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+.map-page .modal-content {
+  position: relative;
+  width: 100%;
+  max-width: calc(1920px + 40px * 2);
+  padding: 20px 40px calc(env(safe-area-inset-bottom) + 20px);
+  /* Handle safe areas (iOS notch devices) */
+  border-radius: 8px;
+  max-height: 100vh;
+}
+.map-page .modal-inner-content {
+  position: relative;
+  background: #23272a;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow-y: auto;
+  width: 100%;
+  overscroll-behavior: none;
+}
+.map-page .close-btn {
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.1;
+  font-family: "Hitmarker Text Bold";
+  font-weight: 700;
+  font-style: normal;
+  font-size: 0.75rem;
+  line-height: 0.88rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: inherit;
+}
+@media screen and (-ms-high-contrast: active) {
+  .map-page .close-btn {
+    border: 2px solid currentcolor;
+  }
+}
+.map-page .modal.media-modal .close-btn {
+  text-decoration: none;
+  background-color: transparent;
+  font-family: inherit;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.1;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+@media screen and (-ms-high-contrast: active) {
+  .map-page .modal.media-modal .close-btn {
+    border: 2px solid currentcolor;
+  }
+}
+.map-page .modal.marker-modal .marker-content {
+  max-height: calc(100vh - 40px - 20px * 2);
+  overflow-x: hidden;
+}
+.map-page .modal.marker-modal .marker-content.simplebar-scrollable-y {
+  overscroll-behavior: none;
+  padding-right: 40px;
+}
+.map-page .modal.marker-modal .modal-inner-content {
+  border-radius: 8px;
+  border: 1px solid #3c4147;
+  background: #23272a;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5), 0 8px 8px 0 rgba(0, 0, 0, 0.6);
+}
+.map-page .modal.marker-modal .marker-modal__footer {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.map-page .modal.marker-modal .marker-modal__footer button {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  height: 40px;
+  background: #3c4147;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+@media (max-width: 1024px) {
+  .map-page .modal-content {
+    padding-inline: 16px;
+  }
+}
+/* Modern browsers: dynamic viewport height */
+@supports (height: 100dvh) {
+  .map-page .modal-content {
+    max-height: 100dvh;
+  }
+  .map-page .modal.marker-modal .marker-content {
+    max-height: calc(100dvh - 40px - 20px * 2);
+  }
+}
+
