@@ -13,9 +13,9 @@ window.MAPS_CONFIG = {
 	  
     {
       id: "map2",
-      name: "Astral",
+      name: "Astral Malorum - Carte",
       modules: [
-        { id: "placeholder", name: "Module à venir", page: "modules/Astra Malorum.html" }
+        { id: "astral", name: "Module à venir", page: "modules/Astra Malorum.html" }
       ]
     },
 
@@ -23,9 +23,10 @@ window.MAPS_CONFIG = {
       id: "module",
       name: "Module",
       modules: [
-        { id: "module", name: "Décodeur symboles", page: "modules/" }
+        { id: "placeholder", name: "Décodeur symboles", page: "modules/" }
       ]
     }	  
   ]
 };
+
 
