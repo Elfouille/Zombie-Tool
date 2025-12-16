@@ -101,7 +101,7 @@
   document.getElementById("modHint").textContent = map.name;
   document.getElementById("backMap").href = `map.html?map=${map.id}`;
 
-  document.getElementById("frame").src = mod.page;
+  document.getElementById("frame").src = mod.page + "?v=" + Date.now();
 })();
 </script>
 </body>
