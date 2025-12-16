@@ -43,7 +43,7 @@
   html, body{overscroll-behavior: contain;}
 
   :root{
-    --infoH: 15svh;
+    --infoH: 25svh;
     --tileSize: 76px;
     --tilePad: 10px;
     --svgSize: 58px;
@@ -58,9 +58,6 @@
     padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
     backdrop-filter: blur(8px);
 
-    /* ✅ si le contenu dépasse, on scroll ICI uniquement */
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
   }
 
   /* Mobile */
